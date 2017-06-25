@@ -1,7 +1,7 @@
 var properties = require('./src/js/game/properties.js');
 
 module.exports = function (grunt) {
-
+  require('load-grunt-tasks')(grunt);
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-cache-bust');
   grunt.loadNpmTasks('grunt-contrib-clean');
@@ -95,7 +95,7 @@ module.exports = function (grunt) {
         src: ['<%= project.src %>/game/app.js'],
         dest: '<%= project.bundle %>',
         options: {
-          transform: ['browserify-shim'],
+          transform: [['browserify-shim'], ["babelify", { "presets": ["es2015"] }]],
           watch: true,
           browserifyOptions: {
             debug: !productionBuild
@@ -165,25 +165,25 @@ module.exports = function (grunt) {
       },
       phaserArcade: {
         files: [ {
-          src: ['node_modules/phaser/build/custom/phaser-arcade-physics.js'],
+          src: ['node_modules/phaser-ce/build/custom/phaser-arcade-physics.js'],
           dest: 'build/js/phaser.js'
         } ]
       },
       phaserArcadeMin: {
         files: [ {
-          src: ['node_modules/phaser/build/custom/phaser-arcade-physics.min.js'],
+          src: ['node_modules/phaser-ce/build/custom/phaser-arcade-physics.min.js'],
           dest: 'build/js/phaser.js'
         } ]
       },
       phaserP2: {
         files: [ {
-          src: ['node_modules/phaser/build/phaser.js'],
+          src: ['node_modules/phaser-ce/build/phaser.js'],
           dest: 'build/js/phaser.js'
         } ]
       },
       phaserP2Min: {
         files: [ {
-          src: ['node_modules/phaser/build/phaser.min.js'],
+          src: ['node_modules/phaser-ce/build/phaser.min.js'],
           dest: 'build/js/phaser.js'
         } ]
       }
@@ -220,7 +220,8 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     /*'jshint',
-    */'clean',
+    */
+    'clean',
     'browserify',
     'jade',
     'stylus',
