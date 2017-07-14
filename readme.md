@@ -2,6 +2,8 @@
 
 A template to boost the productivity of Phaser.js game developers. Provides tools to improve code reuse, assist in development activities, and can package projects into production ready bundles.
 
+This fork updates Browserify to include Babelify and transpile from ES6. It also trims some of the fat.
+
 ## What's in the Box
 
 [NPM](https://www.npmjs.org/) via [Browserify](http://browserify.org/), [Jade](http://jade-lang.com/), [Stylus](http://learnboost.github.io/stylus/), [Lodash](http://lodash.com/), [JsHint](http://www.jshint.com/), [Uglify.js](https://github.com/mishoo/UglifyJS), [Source maps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/), [Stats.js](https://github.com/mrdoob/stats.js/), [Google Analytics](http://www.google.com/analytics/), [Image optimisation tools](http://pngquant.org/), Livereload (auto refresh), Cache busted assets, Zip compression, [.gitignore](https://github.com/serby/GitIgnore)
@@ -14,9 +16,9 @@ You will need to first install [Node.js](http://nodejs.org/download/) and the gr
 
 ### Setup Your Project
 
-Download and unpack [The Phaser.js Boilerplate](https://github.com/lukewilde/phaser-js-boilerplate/archive/master.zip). Or alternatively checkout from source:
+Download and unpack [The Phaser.js Boilerplate](https://github.com/PixelTom/phaser-es6-boilerplate/archive/master.zip). Or alternatively checkout from source:
 
-    git clone git@github.com:lukewilde/phaser-js-boilerplate.git my-sweet-game
+    git clone git@github.com:PixelTom/phaser-es6-boilerplate.git my-sweet-game
     cd my-sweet-game
     rm -rf .git/
     git init && git add -A && git commit -m "Importing Phaser boilerplate."
@@ -41,7 +43,7 @@ Files in the `build` directory will always be generated and excluded from Git by
 
 * Use relative file paths for any assets loaded by your HTML or JavaScript. This will negate any potential path issues when the game is later uploaded to a webserver.
 * If you intend to store development assets (i.e PSD's, Texture Packer files, etc) inside your project, store them outside of the `src` directory to avoid bloating your builds with them.
-* Borwserify is crazy powerful. I'm not going to quote Spiderman, but you should definitely check out [Substack's Browserify Handbook](https://github.com/substack/browserify-handbook).
+* Browserify is crazy powerful. I'm not going to quote Spider-man, but you should definitely check out [Substack's Browserify Handbook](https://github.com/substack/browserify-handbook).
 * Linting is disabled by default, if you'd like to enforce it for production builds update the `.jshintrc` with rules for your coding style and remove the comment block from jshint directive in the gruntfile's build task.
 
 ### Available Targets
@@ -74,9 +76,7 @@ You might notice that Phaser isn't actually bundled in with the rest of our Brow
 
 #### Using P2
 
-The project comes ready to run Phaser with arcade physics, but can easily be adjusted to use the P2 physics engine.
-
-The [`grunt:copy` task](https://github.com/lukewilde/phaser-js-boilerplate/blob/feature/remove-phaser-from-bundle/gruntfile.js#L179-L198) contains directives which can be used in [`grunt:default`](https://github.com/lukewilde/phaser-js-boilerplate/blob/feature/remove-phaser-from-bundle/gruntfile.js#L233) and [`grunt:build`](https://github.com/lukewilde/phaser-js-boilerplate/blob/feature/remove-phaser-from-bundle/gruntfile.js#L249) to copy in your physics engine of choice.
+PixelTom: I've removed this for my version of the repo.
 
 ### Updating or Adding Libraries
 
