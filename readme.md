@@ -1,12 +1,6 @@
-# A Phaser.js Boilerplate
+# Ludum Dare 42
 
-A template to boost the productivity of Phaser.js game developers. Provides tools to improve code reuse, assist in development activities, and can package projects into production ready bundles.
-
-This fork updates Browserify to include Babelify and transpile from ES6. It also trims some of the fat.
-
-## What's in the Box
-
-[NPM](https://www.npmjs.org/) via [Browserify](http://browserify.org/), [Jade](http://jade-lang.com/), [Stylus](http://learnboost.github.io/stylus/), [Lodash](http://lodash.com/), [JsHint](http://www.jshint.com/), [Uglify.js](https://github.com/mishoo/UglifyJS), [Source maps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/), [Stats.js](https://github.com/mrdoob/stats.js/), [Google Analytics](http://www.google.com/analytics/), [Image optimisation tools](http://pngquant.org/), Livereload (auto refresh), Cache busted assets, Zip compression, [.gitignore](https://github.com/serby/GitIgnore)
+Forked from https://github.com/PixelTom/phaser-es6-boilerplate
 
 ## Installing
 
@@ -14,26 +8,13 @@ This fork updates Browserify to include Babelify and transpile from ES6. It also
 
 You will need to first install [Node.js](http://nodejs.org/download/) and the grunt-cli: `npm install -g grunt-cli`.
 
-### Setup Your Project
+### Setup
 
-Download and unpack [The Phaser.js Boilerplate](https://github.com/PixelTom/phaser-es6-boilerplate/archive/master.zip). Or alternatively checkout from source:
-
-    git clone git@github.com:PixelTom/phaser-es6-boilerplate.git my-sweet-game
-    cd my-sweet-game
-    rm -rf .git/
-    git init && git add -A && git commit -m "Importing Phaser boilerplate."
-
-Next, inside the project, you need to install the project's various NPM dependencies:
-
-    npm install
-
-And you should now be ready to spin up a development build of your new project:
-
-    grunt
+- clone the repo
+- `npm install`
+- `grunt` to run the dev build
 
 ## Developing
-
-Your first port of call will likely be to customise the properties found in `package.json` and `src/js/game/properties.js`.
 
 All of the files required to run the game will live in the `src` folder, this will include any JavaScript, images, HTML ([Jade](http://jade-lang.com/)), and CSS ([Stylus](http://learnboost.github.io/stylus/)). When the default grunt task is invoked, these files are compiled to a `build` directory.
 
@@ -74,20 +55,7 @@ Compiles the current build into `{title}.zip` ready for upload to [CocoonJs](htt
 
 You might notice that Phaser isn't actually bundled in with the rest of our Browserify bundle. Bundling it was our first choice initially, however leaving it out enables use of the P2 Physics engine and makes `grunt:browserify` run a whole lot faster. It also gives you the option to pull Phaser from in a [CDN](https://github.com/photonstorm/phaser#cdn).
 
-#### Using P2
-
-PixelTom: I've removed this for my version of the repo.
-
 ### Updating or Adding Libraries
 
 When adding new libraries that aren't CommonJS compatible, you'll have to update the [Browserify Shim configuration](https://github.com/thlorenz/browserify-shim#3-provide-browserify-shim-config).
 
-### Coding Style and Linting
-
-I've adapted [Airbnb's JavaScript Style Guide](https://github.com/bengourley/js-style-guide). I've kept the code footprint low so you can easily include your own `.jshintrc`.
-
-## Created with contributions and inspiration from
-
-  * [Craig Beswetherick](http://grindheadgames.com)
-  * [Jesse Freeman's Phaser template](https://github.com/gamecook/phaser-project-template)
-  * The retired https://github.com/luizbills/phaser-js-boilerplate
