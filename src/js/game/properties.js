@@ -11,5 +11,6 @@ module.exports = {
     x: 1024,
     y: 768
   },
+  background: '#000',
   //analyticsId: 'UA-50892214-2'
 };
