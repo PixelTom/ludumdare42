@@ -11,13 +11,17 @@ html
 
     title=properties.title
 
-    script(src="js/phaser.js")
-    script(src="js/app.min.js")
-
     include analytics.jade
 
+    style(type='text/css').
+      body {
+        background: #{properties.background};
+      }
   body
     #game
+
+    script(src="js/phaser.js")
+    script(src="js/app.min.js")
 
     if (!productionBuild)
       script.

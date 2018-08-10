@@ -1,2 +1,21 @@
 body
   margin 0
+
+#game.autoscale
+  position absolute
+  width 100%
+  height 100%
+
+  canvas
+    margin auto
+    width auto !important
+    height: 100% !important
+
+    &.autowidth
+      width 100% !important
+      height: auto !important
+
+      // vertically centre
+      position absolute
+      top 50%
+      transform translateY(-50%)

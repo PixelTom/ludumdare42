@@ -1,4 +1,5 @@
 var Stats = require('../../lib/stats.min');
+var AutoScale = require('../../lib/autoscale');
 var properties = require('../properties');
 var boot = {};
 
@@ -6,6 +7,10 @@ boot.create = function () {
 
   if (properties.showStats) {
     addStats(this.game);
+  }
+
+  if (properties.autoScale) {
+    AutoScale();
   }
 
   this.game.sound.mute = properties.mute;
