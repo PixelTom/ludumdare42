@@ -1,42 +1,43 @@
-var Stats = require('../../lib/stats.min');
-var AutoScale = require('../../lib/autoscale');
-var properties = require('../properties');
-var boot = {};
+const Stats = require('../../lib/stats.min');
+const AutoScale = require('../../lib/autoscale');
+const properties = require('../properties');
 
-boot.create = function () {
+let stats;
 
-  if (properties.showStats) {
-    addStats(this.game);
+class Boot extends Phaser.State {
+  create() {
+    if (properties.showStats) {
+      this.addStats(this.game);
+    }
+
+    if (properties.autoScale) {
+      AutoScale();
+    }
+
+    this.game.sound.mute = properties.mute;
+
+    this.game.state.start('Preloader');
   }
 
-  if (properties.autoScale) {
-    AutoScale();
+  addStats(game) {
+    stats = new Stats();
+
+    stats.setMode(0);
+
+    stats.domElement.style.position = 'absolute';
+    stats.domElement.style.right = '0px';
+    stats.domElement.style.top = '0px';
+
+    document.body.appendChild(stats.domElement);
+
+    // Monkey patch Phaser's update in order to correctly monitor FPS.
+    const oldUpdate = game.update;
+    game.update = function () {
+      stats.begin();
+      oldUpdate.apply(game, arguments);
+      stats.end();
+    };
   }
-
-  this.game.sound.mute = properties.mute;
-
-  this.game.state.start('preloader');
-};
-
-function addStats(game) {
-
-  var stats = new Stats();
-
-  stats.setMode(0);
-
-  stats.domElement.style.position = 'absolute';
-  stats.domElement.style.right = '0px';
-  stats.domElement.style.top = '0px';
-
-  document.body.appendChild(stats.domElement);
-
-  // Monkey patch Phaser's update in order to correctly monitor FPS.
-  var oldUpdate = game.update;
-  game.update = function() {
-    stats.begin();
-    oldUpdate.apply(game, arguments);
-    stats.end();
-  };
 }
 
-module.exports = boot;
+module.exports = Boot;

@@ -1,4 +1,4 @@
-var npmProperties = require('../../../package.json');
+const npmProperties = require('../../../package.json');
 
 module.exports = {
   title: 'Phaser JS Boilerplate',
@@ -9,9 +9,9 @@ module.exports = {
   showStats: true,
   size: {
     x: 1024,
-    y: 768
+    y: 1024,
   },
   background: '#000',
   autoScale: true,
-  //analyticsId: 'UA-50892214-2'
+  // analyticsId: 'UA-50892214-2'
 };
