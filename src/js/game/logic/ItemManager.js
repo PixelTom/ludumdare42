@@ -48,6 +48,15 @@ class ItemManager {
     return slots;
   }
 
+  connectHeroes(partyManager) {
+    console.log('connectHeroes');
+    this.heroes = [
+      partyManager.merchant,
+      partyManager.archer,
+      partyManager.warrior,
+    ];
+  }
+
   plopItem(slot) {
     console.log('plopitem');
     const item = new Item(this.game, 300, 300, 'item_potion_1');
@@ -56,8 +65,46 @@ class ItemManager {
     item.placeInBag(this.inventory[slot]);
   }
 
-  itemDropped(sprite, pointer) {
-    console.log('itemDropped', sprite, pointer);
+  itemDropped(item, pointer) {
+    // Check it can be dropped in an inventory slot
+    // Dragging manually does not force other items out
+    let found = false;
+    for (let i = 0; i < this.inventory.length; i++) {
+      const slot = this.inventory[i];
+      if (item.x > slot.x - properties.bagThreshold
+        && item.x < slot.x + properties.bagThreshold
+        && item.y > slot.y - properties.bagThreshold
+        && item.y < slot.y + properties.bagThreshold) {
+        if (!slot.occupied) {
+          if (item.slotID) {
+            this.inventory[item.slotID].occupied = false;
+          }
+          item.placeInBag(slot);
+          found = true;
+        }
+      }
+    }
+    // Check if dropped on heroes
+    for (let i = 0; i < this.heroes.length; i++) {
+      const hero = this.heroes[i];
+      if (item.x > hero.x - properties.heroThresholdX
+        && item.x < hero.x + properties.heroThresholdX
+        && item.y > hero.y - (properties.heroThresholdY * 1.5)
+        && item.y < hero.y + properties.heroThresholdY) {
+        if (item.slotID) {
+          this.inventory[item.slotID].occupied = false;
+        }
+        found = hero.giveItem(item);
+        if (found) {
+          item.destroy();
+        }
+      }
+    }
+
+    // Bounce it back if no luck
+    if (!found) {
+      item.placeInBag(this.inventory[item.slotID]);
+    }
   }
 }
 

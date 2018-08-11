@@ -35,6 +35,18 @@ class PartyManager {
   }
 
 
+  walk() {
+    this.warrior.walk();
+    this.archer.walk();
+    this.merchant.walk();
+  }
+
+  stop() {
+    this.warrior.stopWalking();
+    this.archer.stopWalking();
+    this.merchant.stopWalking();
+  }
+
   // Get Warrior over Archer if Warrior is alive
   getNextAlive() {
     if (this.warrior.isAlive()) {

@@ -8,6 +8,7 @@ class MonsterChar extends BaseChar {
 
     const data = {
       HP: 5,
+      MAX_HP: 5,
       NAME: 'Generic',
       ATTACK: 1,
       BLOCK_CHANCE: 0.5,

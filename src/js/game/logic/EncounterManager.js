@@ -13,7 +13,6 @@ class EncounterManager {
     this.onLose = new Phaser.Signal();
   }
 
-
   newEncounter() {
     console.log('EncounterManager.newEncounter');
     this.monster.genMonster();

@@ -7,6 +7,7 @@ class CharArcher extends BaseChar {
 
     const data = {
       HP: 5,
+      MAX_HP: 5,
       NAME: 'Archer',
       AMMO: 5,
       ATTACK: 1,

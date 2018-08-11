@@ -11,6 +11,7 @@ class Item extends Phaser.Sprite {
     this.events.onDragStop.add(this.onDragStop, this);
     this.inInventory = false;
     this.dropped = new Phaser.Signal();
+    this.attack = this.genAttack(key);
   }
 
   placeInBag(slot) {
@@ -18,6 +19,7 @@ class Item extends Phaser.Sprite {
     slot.occupied = true;
     this.x = slot.x;
     this.y = slot.y;
+    this.slotID = slot.id;
   }
 
 
@@ -42,6 +44,14 @@ class Item extends Phaser.Sprite {
     }
     console.log('Drop Start');
     this.dropped.dispatch(sprite, pointer);
+  }
+
+  genAttack(itemName) {
+    switch (itemName) {
+      case 'item_potion_1':
+        return { DAMAGE: -2 };
+        break;
+    }
   }
 }
 

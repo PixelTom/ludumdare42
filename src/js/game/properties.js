@@ -17,6 +17,9 @@ module.exports = {
 
   // Positional properties
   baseY: 400,
+  bagThreshold: 120,
+  heroThresholdX: 40,
+  heroThresholdY: 100,
 
   // Explore properties
   exploreTimer: 3000, // How long to walk pre-battle
