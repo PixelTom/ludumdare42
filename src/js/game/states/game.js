@@ -15,7 +15,6 @@ class Game extends Phaser.State {
     this.partyManager = new PartyManager(this.game);
     this.monsterManager = new MonsterManager(this.game);
     this.encounterManager = new EncounterManager(this.game, this.partyManager, this.monsterManager);
-
     this.explorePhase();
   }
 
@@ -27,9 +26,20 @@ class Game extends Phaser.State {
   newEncounter() {
     console.log('New Encounter');
 
+    this.encounterManager.onWin.add(this.winEncounter, this);
+    this.encounterManager.onLose.add(this.loseEncounter, this);
     this.encounterManager.newEncounter();
     // enemyMonster = new MonsterChar(this.game, this.EncounterManager.getMonster());
     // this.enemyGroup.add(enemyMonster);
+  }
+
+  winEncounter() {
+    console.log('game.win');
+    this.explorePhase();
+  }
+
+  loseEncounter() {
+    console.log('Game over :(');
   }
 }
 

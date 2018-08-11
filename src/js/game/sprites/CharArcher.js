@@ -1,8 +1,9 @@
 const BaseChar = require('./BaseChar');
+const properties = require('../properties');
 
 class CharArcher extends BaseChar {
   constructor(game, x, y, key, frame) {
-    super(game, 400, 500, 'tom_archer', frame);
+    super(game, 400, properties.baseY, 'tom_archer', frame);
 
     const data = {
       HP: 5,

@@ -7,6 +7,7 @@ class PartyManager {
   constructor(game) {
     this.game = game;
     this.genParty();
+    this.onDeath = new Phaser.Signal();
   }
 
   genParty() {
@@ -17,9 +18,12 @@ class PartyManager {
     this.archer = new CharArcher(this.game);
     this.merchant = new CharMerchant(this.game);
 
-    this.partyGroup.add(this.party.warrior);
-    this.partyGroup.add(this.party.archer);
-    this.partyGroup.add(this.party.merchant);
+    this.partyGroup.add(this.warrior);
+    this.partyGroup.add(this.archer);
+    this.partyGroup.add(this.merchant);
+
+    this.warrior.onDeath.add(this.loseMember, this);
+    this.archer.onDeath.add(this.loseMember, this);
   }
 
   // Get a random party member who is still alive
@@ -35,8 +39,16 @@ class PartyManager {
   getNextAlive() {
     if (this.warrior.isAlive()) {
       return this.warrior;
+    } if (this.archer.isAlive()) {
+      return this.archer;
     }
-    return this.archer;
+    return null;
+  }
+
+  loseMember() {
+    if (this.getNextAlive() == null) {
+      this.onDeath.dispatch();
+    }
   }
 }
 

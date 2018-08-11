@@ -15,9 +15,13 @@ module.exports = {
   autoScale: true,
   // analyticsId: 'UA-50892214-2'
 
+  // Positional properties
+  baseY: 400,
+
   // Explore properties
   exploreTimer: 3000, // How long to walk pre-battle
 
   // Combat properties
   turnTimer: 1000, // How long between turns
+  postBattleTimer: 2000,
 };
