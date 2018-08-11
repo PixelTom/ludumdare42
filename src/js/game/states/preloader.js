@@ -7,6 +7,7 @@ class Preloader extends Phaser.State {
     this.game.load.image('tom_merchant', 'images/tom_merchant.png');
     this.game.load.image('tom_monster_generic', 'images/tom_monster_generic.png');
     this.game.load.image('tom_bg', 'images/tom_bg.jpg');
+    this.game.load.image('item_potion_1', 'images/item_potion_1.png');
   }
 
   create() {

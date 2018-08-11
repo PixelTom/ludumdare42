@@ -1,7 +1,7 @@
 const npmProperties = require('../../../package.json');
 
 module.exports = {
-  title: 'Phaser JS Boilerplate',
+  title: 'Ludum Dare 42',
   description: npmProperties.description,
   port: 3017,
   liveReloadPort: 3018,
@@ -12,7 +12,7 @@ module.exports = {
     y: 1024,
   },
   background: '#000',
-  autoScale: true,
+  autoScale: false,
   // analyticsId: 'UA-50892214-2'
 
   // Positional properties

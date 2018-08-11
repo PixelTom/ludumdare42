@@ -1,6 +1,7 @@
 const MonsterManager = require('../logic/MonsterManager');
 const PartyManager = require('../logic/PartyManager');
 const EncounterManager = require('../logic/EncounterManager');
+const ItemManager = require('../logic/ItemManager');
 const properties = require('../properties');
 
 class Game extends Phaser.State {
@@ -14,6 +15,7 @@ class Game extends Phaser.State {
 
     this.partyManager = new PartyManager(this.game);
     this.monsterManager = new MonsterManager(this.game);
+    this.ItemManager = new ItemManager(this.game);
     this.encounterManager = new EncounterManager(this.game, this.partyManager, this.monsterManager);
     this.explorePhase();
   }
