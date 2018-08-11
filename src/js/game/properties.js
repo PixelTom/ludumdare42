@@ -14,4 +14,10 @@ module.exports = {
   background: '#000',
   autoScale: true,
   // analyticsId: 'UA-50892214-2'
+
+  // Explore properties
+  exploreTimer: 3000, // How long to walk pre-battle
+
+  // Combat properties
+  turnTimer: 1000, // How long between turns
 };
