@@ -14,6 +14,18 @@ class Item extends Phaser.Sprite {
     this.attack = this.genAttack(key);
   }
 
+  toss() {
+    this.game.physics.arcade.enable(this, false);
+    this.game.physics.arcade.setBounds(0, 0, 1024, 512);
+    this.body.collideWorldBounds = true;
+    this.body.bounce.y = 0.3;
+    this.body.gravity.y = 1500;
+    this.body.velocity.x = (Math.random() * -200) - 250;
+    this.body.velocity.y = (Math.random() * -250) - 100;
+    this.body.drag.x = 150;
+    this.body.drag.y = 50;
+  }
+
   placeInBag(slot) {
     this.inInventory = true;
     slot.occupied = true;
@@ -52,6 +64,10 @@ class Item extends Phaser.Sprite {
         return { DAMAGE: -2 };
         break;
     }
+  }
+
+  update() {
+
   }
 }
 

@@ -11,6 +11,7 @@ class EncounterManager {
     this.monster.onDeath.add(this.winEncounter, this);
     this.onWin = new Phaser.Signal();
     this.onLose = new Phaser.Signal();
+    this.dropLoot = new Phaser.Signal();
   }
 
   newEncounter() {
@@ -55,7 +56,12 @@ class EncounterManager {
 
     // Attack
     const attack = combatant.attack();
-    const death = target.defend(attack);
+    const result = target.defend(attack);
+
+    // Post attack tasks
+    if (target.data.FOE && result) {
+      this.dropLoot.dispatch();
+    }
 
     this.prepNext(c);
   }

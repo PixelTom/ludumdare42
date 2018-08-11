@@ -46,12 +46,28 @@ class BaseChar extends Phaser.Sprite {
 
   defend(attack) {
     console.log(`Attacked for ${attack.DAMAGE} damage`);
+    // Try to block
+    if (this.rollDice(this.data.BLOCK_CHANCE)) {
+      this.block();
+      return false;
+    }
     this.data.HP -= attack.DAMAGE;
     this.data.HP = Math.min(this.data.HP, this.data.MAX_HP); // Prevent overhealing
     if (this.data.HP <= 0) {
       this.die();
     }
+    return true;
+
     console.log(`HP remaining: ${this.data.HP}`);
+  }
+
+  // Overwrite for warrior
+  block() {
+
+  }
+
+  rollDice(chance) {
+    return Math.random() < chance;
   }
 
   walk() {

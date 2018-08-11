@@ -12,9 +12,11 @@ const states = {
 
 const phaserGame = new Phaser.Game(properties.size.x, properties.size.y, Phaser.AUTO, 'game', {
   create() {
-    this.game.physics.startSystem(Phaser.Physics.ARCADE);
+    this.physics.startSystem(this.game.physics.arcade);
+    this.physics.arcade.setBounds(0, 0, 512, 500);
   },
 });
+
 
 // Automatically register each state.
 _.each(states, (state, key) => {

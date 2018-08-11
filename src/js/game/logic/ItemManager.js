@@ -57,12 +57,23 @@ class ItemManager {
     ];
   }
 
-  plopItem(slot) {
-    console.log('plopitem');
+  newItem() {
     const item = new Item(this.game, 300, 300, 'item_potion_1');
     item.dropped.add(this.itemDropped, this);
     this.itemGroup.add(item);
+    return item;
+  }
+
+  plopItem(slot) {
+    const item = this.newItem();
     item.placeInBag(this.inventory[slot]);
+  }
+
+  dropLoot() {
+    const item = this.newItem();
+    item.x = 900;
+    item.y = 200;
+    item.toss();
   }
 
   itemDropped(item, pointer) {

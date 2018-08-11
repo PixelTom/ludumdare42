@@ -16,6 +16,8 @@ module.exports = {
   // analyticsId: 'UA-50892214-2'
 
   // Positional properties
+  gravity: 1,
+  floorY: 500,
   baseY: 400,
   bagThreshold: 120,
   heroThresholdX: 40,
