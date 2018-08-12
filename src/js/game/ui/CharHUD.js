@@ -56,7 +56,7 @@ class CharHUD extends Phaser.Group {
     if (this.data.ARMOUR) {
       const armorTally = this.addTally( {
         prop: 'ARMOUR',
-        img: 0x949494, // temp
+        img: 'icon_shield',
         x: this.options.resourceX,
         y: this.options.resourceY,
       } )
@@ -66,7 +66,7 @@ class CharHUD extends Phaser.Group {
     if (this.data.ARROWS) {
       const ammoTally = this.addTally( {
         prop: 'ARROWS',
-        img: 0x36eaff, // temp
+        img: 'icon_arrow',
         x: this.options.resourceX,
         y: this.options.resourceY,
       } )
@@ -76,7 +76,7 @@ class CharHUD extends Phaser.Group {
     if (this.data.ITEMS) {
       const itemTally = this.addTally( {
         prop: 'ITEMS',
-        img: 0xfff336, // temp
+        img: 'icon_coin',
         x: this.options.resourceX,
         y: this.options.resourceY,
         vertical: true,
@@ -170,12 +170,7 @@ class CharHUD extends Phaser.Group {
     const group = game.make.group()
 
     const newIcon = function() {
-      // temp, should be image
-      const icon = game.make.graphics(0, 0)
-      icon.beginFill( img )
-      icon.drawRect(0, 0, 20, 20)
-      icon.endFill()
-      return icon
+      return game.make.sprite(0, 0, img)
     }
 
     const createIcon = function() {
