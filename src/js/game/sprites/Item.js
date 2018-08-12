@@ -224,7 +224,7 @@ class Item extends Phaser.Sprite {
 
   rarityPick(items, forceHeal) {
     items = _.shuffle(items);
-    const rarity = _.sample([1, 1, 1, 1, 2, 2, 2, 3, 3, 4]);
+    const rarity = _.sample([1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 4]);
     let found = false;
     let i = -1;
     let item;
