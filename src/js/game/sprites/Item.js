@@ -2,9 +2,9 @@ const _ = require('lodash');
 const properties = require('../properties');
 
 class Item extends Phaser.Sprite {
-  constructor(game, x, y, key, frame) {
+  constructor(forceHeal = false, game, x, y, key, frame) {
     super(game, x, y, key, frame);
-    this.generateKeys();
+    this.generateKeys(forceHeal);
     this.anchor.setTo(0.5, 0.5);
     this.inputEnabled = true;
     this.input.disableDrag();
@@ -124,7 +124,7 @@ class Item extends Phaser.Sprite {
     }
   }
 
-  generateKeys() {
+  generateKeys(forceHeal = false) {
     // random for now
     const gifts = [
       'item_gift_1',
@@ -152,7 +152,7 @@ class Item extends Phaser.Sprite {
         HEAL: true,
       },
       {
-        KEY: 'item_aloe_1',
+        KEY: 'item_burn_lotion_1',
         VALUE: 1,
         STATUS: 'BURNED',
         HEAL: true,
@@ -182,6 +182,7 @@ class Item extends Phaser.Sprite {
         VALUE: 1,
         DAMAGE: -2,
         HEAL: true,
+        STATUS_CHANCE: -1,
       },
       {
         KEY: 'item_quiver_1',
@@ -189,18 +190,21 @@ class Item extends Phaser.Sprite {
         EXCLUSIONS: ['WARRIOR'],
         STATUS: 'ARROWS',
         HEAL: true,
+        STATUS_CHANCE: -1,
       },
       {
         KEY: 'item_shield_1',
-        VALUE: 3,
+        VALUE: 2,
         EXCLUSIONS: ['ARCHER'],
         STATUS: 'ARMOUR',
         HEAL: true,
+        STATUS_CHANCE: -1,
       },
       {
         KEY: 'item_relic_2',
-        VALUE: 2,
+        VALUE: 3,
         STATUS: 'LIFE',
+        STATUS_CHANCE: -1,
       },
     ];
 
@@ -208,14 +212,32 @@ class Item extends Phaser.Sprite {
       items[i].VALUE = items[i].VALUE || 0;
       items[i].EXCLUSIONS = items[i].EXCLUSIONS || [];
       items[i].DAMAGE = items[i].DAMAGE || 0;
-      items[i].STATUS = items[i].STATUS || '';
+      items[i].STATUS = items[i].STATUS || null;
       items[i].HEAL = items[i].HEAL || false;
       items[i].ITEM = true;
-      items[i].STATUS_CHANCE = 1;
+      items[i].STATUS_CHANCE = items[i].STATUS_CHANCE || 1;
     }
 
     this.giftKey = _.sample(gifts);
-    this.itemKey = _.sample(items);
+    this.itemKey = this.rarityPick(items, forceHeal);
+  }
+
+  rarityPick(items, forceHeal) {
+    items = _.shuffle(items);
+    const rarity = _.sample([1, 1, 1, 1, 2, 2, 2, 3, 3, 4]);
+    let found = false;
+    let i = -1;
+    let item;
+    while (!found) {
+      i += 1;
+      item = items[i];
+      if (item.HEAL && forceHeal) {
+        found = true;
+      } else if (item.VALUE == rarity) {
+        found = true;
+      }
+    }
+    return item;
   }
 
   update() {

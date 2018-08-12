@@ -4,7 +4,7 @@ const EncounterManager = require('../logic/EncounterManager');
 const ItemManager = require('../logic/ItemManager');
 const properties = require('../properties');
 
- // set global so it's not accessible via console. (this file should be scoped right?)
+// set global so it's not accessible via console. (this file should be scoped right?)
 let bosses = 0;
 let textScoreVal;
 
@@ -33,16 +33,16 @@ class Game extends Phaser.State {
     const scoreCnt = this.game.add.group();
     scoreCnt.x = 600;
     scoreCnt.y = 20;
-    const textScore = this.game.make.text( 0, 0, 'Defeated:', {
+    const textScore = this.game.make.text(0, 10, 'Defeated:', {
       font: 'normal 30px "Press Start 2P"',
       fill: '#ffffff',
     });
-    textScoreVal = this.game.make.text( 280, 0, bosses, {
+    textScoreVal = this.game.make.text(280, 0, bosses, {
       font: 'normal 50px "Press Start 2P"',
       fill: '#ffffff',
     });
-    scoreCnt.add( textScore );
-    scoreCnt.add( textScoreVal );
+    scoreCnt.add(textScore);
+    scoreCnt.add(textScoreVal);
 
     // music
     this.bgMusic = this.game.add.audio('bg_music');
@@ -65,8 +65,8 @@ class Game extends Phaser.State {
     this.exploring = true;
 
     // setTimeout( () => {
-    this.bgMusic.play()
-    this.comMusic.stop()
+    this.bgMusic.play();
+    this.comMusic.stop();
     // }, 2000);
   }
 
@@ -104,13 +104,13 @@ class Game extends Phaser.State {
         }
       }
 
-      this.itemManager.dropGroup.forEach( (item) => {
+      this.itemManager.dropGroup.forEach((item) => {
         item.x -= 3;
 
         if (item.x < 0) {
           item.destroy();
         }
-      } )
+      });
     }
   }
 
@@ -125,7 +125,7 @@ class Game extends Phaser.State {
     console.log('Game over :(');
   }
 
-  updateScore(){
+  updateScore() {
     textScoreVal.text = bosses;
   }
 }

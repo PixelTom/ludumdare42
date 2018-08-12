@@ -8,6 +8,10 @@ class Title extends Phaser.State {
   }
 
   setup() {
+    const textScore = this.game.make.text(0, 0, 'TEST', {
+      font: 'normal 30px "Press Start 2P"',
+      fill: '#ffffff',
+    });
     const dungBG1 = this.game.add.image(0, 0, 'dungeon_bg');
     const dungBG2 = this.game.add.image(0, 512, 'dungeon_bg');
     const title = this.game.add.image(0, 0, 'title');
