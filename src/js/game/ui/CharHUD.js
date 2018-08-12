@@ -233,7 +233,7 @@ class CharHUD extends Phaser.Group {
       }
     } else if ( diff < 0 ) { // remove tally
       for ( let i=0; i<-diff; i++ ) {
-        if ( tallyCnt.children.length ) {
+        if ( metric.tally.group.children.length ) {
           metric.tally.remove()
         }
       }
@@ -244,9 +244,9 @@ class CharHUD extends Phaser.Group {
     if (diff && diff < 0) {
       const icon = metric.icon()
       this.statusIcon( icon, {
-        x: metric.tally.group.x + metric.tally.group.children.length * icon.width + 50,
+        x: metric.tally.group.x + (metric.tally.group.children.length) * (icon.width + 5),
         y: metric.tally.group.y,
-        parent: bar.parent,
+        parent: metric.tally.group.parent,
       } )
     }
   }
@@ -265,6 +265,7 @@ class CharHUD extends Phaser.Group {
   statusIcon( obj, { x, y, parent, color } ) {
     obj.x = x
     obj.y = y
+    obj.alpha = 0.5
     parent.add( obj )
     this.blipStatus( obj )
   }
