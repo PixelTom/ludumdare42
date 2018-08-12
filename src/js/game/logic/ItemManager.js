@@ -61,6 +61,7 @@ class ItemManager {
     const item = new Item(this.game, 300, 300);
     item.dropped.add(this.itemDropped, this);
     item.tapped.add(this.itemTapped, this);
+    item.dragUpdate.add( this.itemDragging, this ); // check if item is over something
     // this.bagGroup.add(item);
     return item;
   }
@@ -101,6 +102,46 @@ class ItemManager {
       item.flipIt();
     } else {
       this.placeLoot(item, slot);
+    }
+  }
+
+  itemDragging(item) {
+    let found = false;
+
+    // Check it can be dropped in an inventory slot
+    // Dragging manually does not force other items out
+    for (let i = 0; i < this.inventory.length; i++) {
+      const slot = this.inventory[i];
+      if (item.x > slot.x - properties.bagThreshold
+        && item.x < slot.x + properties.bagThreshold
+        && item.y > slot.y - properties.bagThreshold
+        && item.y < slot.y + properties.bagThreshold) {
+        if (!slot.occupied) {
+          found = true;
+          item.alpha = 0.5;
+        }
+      }
+    }
+    // Check if over heroes
+    for (let i = 0; i < this.heroes.length; i++) {
+      const hero = this.heroes[i];
+      if (item.x > hero.x - properties.heroThresholdX
+        && item.x < hero.x + properties.heroThresholdX
+        && item.y > hero.y - (properties.heroThresholdY * 1.5)
+        && item.y < hero.y + properties.heroThresholdY) {
+
+        found = hero.isEligible(item)
+        if (found) {
+          item.scale.x = 0.6;
+          item.scale.y = 0.6;
+        }
+      }
+    }
+
+    if (!found) {
+      item.scale.x = 1;
+      item.scale.y = 1;
+      item.alpha = 1;
     }
   }
 

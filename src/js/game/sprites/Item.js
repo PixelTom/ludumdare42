@@ -13,12 +13,15 @@ class Item extends Phaser.Sprite {
     this.events.onInputUp.add(this.onUp, this);
     this.events.onDragStart.add(this.onDragStart, this);
     this.events.onDragStop.add(this.onDragStop, this);
+    this.events.onDragUpdate.add(this.onDragUpdate, this);
     this.inInventory = false;
     this.dropped = new Phaser.Signal();
     this.tapped = new Phaser.Signal();
+    this.dragUpdate = new Phaser.Signal();
     this.attack = this.genAttack(key);
     this.slotID = -1;
     this.walking = false; // bool to check if items should be deleted when they hit the left of screen
+    this.dragging = false; // bool to check if it's picked up atm
   }
 
   toss(dirMod = 1) {
@@ -89,6 +92,7 @@ class Item extends Phaser.Sprite {
       return;
     }
     this.bringToTop();
+    this.dragging = true;
     console.log('Drag Start');
   }
 
@@ -97,7 +101,13 @@ class Item extends Phaser.Sprite {
       return;
     }
     console.log('Drop Start');
+    this.dragging = false;
     this.dropped.dispatch(sprite, pointer);
+  }
+
+  onDragUpdate(sprite, pointer, x, y) {
+    if (!this.dragging) return;
+    this.dragUpdate.dispatch( sprite, pointer, x, y );
   }
 
   onWorldBounds(sprite, up, down, left, right) {
