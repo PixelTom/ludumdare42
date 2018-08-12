@@ -140,6 +140,7 @@ class ItemManager {
           item.destroy();
         } else {
           item.toss(0);
+          this.dropGroup.add(item); // temp - should always be before toss is called
         }
       }
     }
@@ -152,6 +153,7 @@ class ItemManager {
           item.slotID = -1;
         }
         item.toss(0);
+        this.dropGroup.add(item); // temp - should always be before toss is called
       } else {
         this.placeLoot(item, this.inventory[item.slotID], true);
       }
@@ -159,11 +161,19 @@ class ItemManager {
   }
 
   startWalk() { // drift the items when characters are walking
-
+    this.dropGroup.forEach( (item) => {
+      item.walking = true;
+      item.body.velocity.x = -200;
+      item.body.drag.x = 0;
+    } );
   }
 
   stopWalk() { // stop the drift
-
+    this.dropGroup.forEach( (item) => {
+      item.walking = false;
+      item.body.velocity.x = 0;
+      item.body.drag.x = 500;
+    } );
   }
 }
 

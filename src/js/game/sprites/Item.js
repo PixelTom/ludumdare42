@@ -18,6 +18,7 @@ class Item extends Phaser.Sprite {
     this.tapped = new Phaser.Signal();
     this.attack = this.genAttack(key);
     this.slotID = -1;
+    this.walking = false; // bool to check if items should be deleted when they hit the left of screen
   }
 
   toss(dirMod = 1) {
@@ -25,6 +26,8 @@ class Item extends Phaser.Sprite {
     this.loadTexture(this.giftKey);
     this.game.physics.arcade.enable(this, false);
     this.game.physics.arcade.setBounds(0, 0, 1024, 512);
+    this.body.onWorldBounds = new Phaser.Signal()
+    this.body.onWorldBounds.add( this.onWorldBounds.bind(this) );
     this.body.collideWorldBounds = true;
     this.body.enable = true;
     this.body.bounce.y = 0.3;
@@ -95,6 +98,12 @@ class Item extends Phaser.Sprite {
     }
     console.log('Drop Start');
     this.dropped.dispatch(sprite, pointer);
+  }
+
+  onWorldBounds(sprite, up, down, left, right) {
+    if ( left && this.walking ) {
+      this.destroy();
+    }
   }
 
   genAttack(itemName) {
