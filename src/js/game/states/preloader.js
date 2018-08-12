@@ -7,7 +7,18 @@ class Preloader extends Phaser.State {
     this.game.load.image('tom_merchant', 'images/tom_merchant.png');
     this.game.load.image('tom_monster_generic', 'images/tom_monster_generic.png');
     this.game.load.image('tom_bg', 'images/tom_bg.jpg');
+    this.game.load.image('item_antidote_1', 'images/item_antidote_1.png');
+    this.game.load.image('item_gift_1', 'images/item_gift_1.png');
+    this.game.load.image('item_gift_2', 'images/item_gift_2.png');
+    this.game.load.image('item_gift_3', 'images/item_gift_3.png');
+    this.game.load.image('item_gift_4', 'images/item_gift_4.png');
+    this.game.load.image('item_gift_5', 'images/item_gift_5.png');
+    this.game.load.image('item_head_1', 'images/item_head_1.png');
+    this.game.load.image('item_holy_water_1', 'images/item_holy_water_1.png');
+    this.game.load.image('item_junk_1', 'images/item_junk_1.png');
     this.game.load.image('item_potion_1', 'images/item_potion_1.png');
+    this.game.load.image('item_quiver_1', 'images/item_quiver_1.png');
+    this.game.load.image('item_shield_1', 'images/item_shield_1.png');
   }
 
   create() {
