@@ -108,8 +108,7 @@ class ItemManager {
   itemDragging(item) {
     let found = false;
 
-    // Check it can be dropped in an inventory slot
-    // Dragging manually does not force other items out
+    // Check if over inventory
     for (let i = 0; i < this.inventory.length; i++) {
       const slot = this.inventory[i];
       if (item.x > slot.x - properties.bagThreshold
@@ -118,10 +117,10 @@ class ItemManager {
         && item.y < slot.y + properties.bagThreshold) {
         if (!slot.occupied) {
           found = true;
-          item.alpha = 0.5;
         }
       }
     }
+
     // Check if over heroes
     for (let i = 0; i < this.heroes.length; i++) {
       const hero = this.heroes[i];
@@ -139,13 +138,21 @@ class ItemManager {
     }
 
     if (!found) {
+      // assume if not found, that it's junk
       item.scale.x = 1;
       item.scale.y = 1;
+      item.alpha = 0.5;
+    } else {
       item.alpha = 1;
     }
   }
 
   itemDropped(item, pointer) {
+    // reset some stuff from dragUpdate they may be out of sync
+    item.alpha = 1;
+    item.scale.x = 1;
+    item.scale.y = 1;
+
     // Check it can be dropped in an inventory slot
     // Dragging manually does not force other items out
     let found = false;
