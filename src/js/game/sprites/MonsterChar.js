@@ -11,7 +11,7 @@ class MonsterChar extends BaseChar {
       HP: 5,
       MAX_HP: 5,
       NAME: 'Generic',
-      ATTACK: 1,
+      DAMAGE: 1,
       BLOCK_CHANCE: 0.5,
       FRIEND: false,
       FOE: true,
@@ -41,8 +41,6 @@ class MonsterChar extends BaseChar {
         COLOUR: 0xffa836,
       },
     ];
-
-    console.log();
 
     status = _.sample(status);
     this.data.STATUS = status.STATUS;

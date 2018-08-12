@@ -10,7 +10,7 @@ class CharWarrior extends BaseChar {
       MAX_HP: 5,
       ARMOUR: 5,
       NAME: 'WARRIOR',
-      ATTACK: 1,
+      DAMAGE: 1,
       BLOCK_CHANCE: 0.5,
       FRIEND: true,
       FOE: false,

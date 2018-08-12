@@ -51,12 +51,13 @@ class EncounterManager {
     }
 
     // Attack
-    const attack = combatant.attack();
+    const cantAttack = combatant.attack();
     let result = false;
-    if (attack) { // lazy
-      result = target.defend(attack);
+    if (cantAttack) { // lazy
+      result = target.defend(combatant.data);
     }
 
+    combatant.checkStatus();
 
     // Post attack tasks
     if (target.data.FOE && result) {

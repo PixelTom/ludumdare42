@@ -189,6 +189,7 @@ class Item extends Phaser.Sprite {
         EXCLUSIONS: ['WARRIOR'],
         STATUS: 'ARROWS',
         HEAL: true,
+        STATUS_CHANCE: 0,
       },
       {
         KEY: 'item_shield_1',
@@ -196,11 +197,13 @@ class Item extends Phaser.Sprite {
         EXCLUSIONS: ['ARCHER'],
         STATUS: 'ARMOUR',
         HEAL: true,
+        STATUS_CHANCE: 0,
       },
       {
         KEY: 'item_relic_2',
         VALUE: 2,
         STATUS: 'LIFE',
+        STATUS_CHANCE: 0,
       },
     ];
 
@@ -208,10 +211,10 @@ class Item extends Phaser.Sprite {
       items[i].VALUE = items[i].VALUE || 0;
       items[i].EXCLUSIONS = items[i].EXCLUSIONS || [];
       items[i].DAMAGE = items[i].DAMAGE || 0;
-      items[i].STATUS = items[i].STATUS || '';
+      items[i].STATUS = items[i].STATUS || null;
       items[i].HEAL = items[i].HEAL || false;
       items[i].ITEM = true;
-      items[i].STATUS_CHANCE = 1;
+      items[i].STATUS_CHANCE = items[i].STATUS_CHANCE || 1;
     }
 
     this.giftKey = _.sample(gifts);

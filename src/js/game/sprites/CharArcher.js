@@ -10,7 +10,7 @@ class CharArcher extends BaseChar {
       MAX_HP: 5,
       NAME: 'ARCHER',
       ARROWS: 5,
-      ATTACK: 1,
+      DAMAGE: 1,
       FRIEND: true,
       FOE: false,
     };
@@ -31,9 +31,7 @@ class CharArcher extends BaseChar {
     }
     this.doAttackAnim();
     this.data.ARROWS -= 1;
-    return {
-      DAMAGE: this.data.ATTACK,
-    };
+    return true;
   }
 
   checkSpecialItem(itemKey) {

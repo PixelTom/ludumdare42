@@ -11,9 +11,9 @@ class BaseChar extends Phaser.Sprite {
   initData(data) {
     this.data = data;
     this.data.ALIVE = this.data.ALIVE || true;
-    this.data.ATTACK = this.data.ATTACK || 0;
+    this.data.DAMAGE = this.data.DAMAGE || 0;
     this.data.HP = this.data.HP || 0;
-    this.data.STATUS = '';
+    this.data.STATUS = null;
 
     this.hud = new CharHUD(this);
   }
@@ -51,9 +51,7 @@ class BaseChar extends Phaser.Sprite {
 
   attack() {
     this.doAttackAnim();
-    return {
-      DAMAGE: this.data.ATTACK,
-    };
+    return true;
   }
 
   doAttackAnim() {
@@ -67,38 +65,54 @@ class BaseChar extends Phaser.Sprite {
   }
 
   defend(attack) {
-    console.log('Attacking', attack.DAMAGE);
+    console.log('Attacking', attack);
     // Try to block
     if (this.rollDice(this.data.BLOCK_CHANCE) && !attack.ITEM) {
       this.block();
       return false;
     }
 
-    if (this.data.FOE) {
-      console.log(`FOE HP: ${this.data.HP}`);
-      console.log(attack.DAMAGE);
-    }
-    this.data.HP -= attack.DAMAGE;
-    this.data.HP = Math.min(this.data.HP, this.data.MAX_HP); // Prevent overhealing
-    if (this.data.FOE) {
-      console.log(`FOE HP: ${this.data.HP}`);
-    }
-    if (this.data.HP <= 0) {
-      if (this.data.FOE) {
-        console.log('FOE should be dead');
-      }
-      this.die();
-    }
+    this.damage(attack.DAMAGE);
 
-    if (this.rollDice(attack.STATUS_CHANCE)) {
+    if (this.rollDice(attack.STATUS_CHANCE) && this.data.ALIVE) {
       if (attack.STATUS == this.data.STATUS && attack.HEAL) {
         this.data.STATUS = '';
       } else {
+        console.log('Status', attack.STATUS, 'colour', attack.COLOUR, 'attack.STATUS_CHANCE', attack.STATUS_CHANCE);
         this.data.STATUS = attack.STATUS;
+        this.data.STATUS_COUNT = -1;
+        if (attack.COLOUR) {
+          this.tint = attack.COLOUR;
+        }
       }
     }
 
     return true;
+  }
+
+  damage(value) {
+    this.data.HP -= value;
+    this.data.HP = Math.min(this.data.HP, this.data.MAX_HP); // Prevent overhealing
+    if (this.data.HP <= 0) {
+      if (this.data.FOE) {
+      }
+      this.die();
+    }
+  }
+
+  checkStatus() {
+    if (this.data.STATUS) {
+      this.data.STATUS_COUNT += 1;
+      this.damage(1);
+      if (this.data.STATUS_COUNT > 0) {
+        this.hud.statusText(this.data.STATUS, {
+          x: this.x - 100,
+          y: this.y - 100,
+          parent: this.parent,
+          color: 0xffffff,
+        });
+      }
+    }
   }
 
   // Overwrite for warrior
@@ -133,12 +147,19 @@ class BaseChar extends Phaser.Sprite {
       return;
     }
     this.data.ALIVE = false;
+    this.clearStatus();
     this.onDeath.dispatch();
     if (this.data.FOE) {
       this.rotation += 1.571;
     } else {
       this.rotation -= 1.571;
     }
+  }
+
+  clearStatus() {
+    this.data.STATUS = null;
+    this.data.STATUS_COUNT = -1;
+    this.tint = 0xFFFFFF;
   }
 
   revive() {
