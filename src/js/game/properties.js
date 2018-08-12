@@ -25,7 +25,7 @@ module.exports = {
   sellTimeout: 1500,
 
   // Explore properties
-  exploreTimer: 3000, // How long to walk pre-battle
+  exploreTimer: 6000, // How long to walk pre-battle
 
   // Combat properties
   turnTimer: 1000, // How long between turns
