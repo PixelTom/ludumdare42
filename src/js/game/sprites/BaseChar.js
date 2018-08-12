@@ -102,8 +102,8 @@ class BaseChar extends Phaser.Sprite {
   checkStatus() {
     if (this.data.STATUS) {
       this.data.STATUS_COUNT += 1;
-      this.damage(1);
       if (this.data.STATUS_COUNT > 0) {
+        this.damage(1);
         this.hud.statusText(this.data.STATUS, {
           x: this.x - 100,
           y: this.y - 100,
