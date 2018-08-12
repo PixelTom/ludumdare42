@@ -51,6 +51,10 @@ class MonsterChar extends BaseChar {
       this.tint = status.COLOUR;
     }
   }
+
+  checkStatus() {
+    // Monsters can't suffer damage from statuses
+  }
 }
 
 module.exports = MonsterChar;
