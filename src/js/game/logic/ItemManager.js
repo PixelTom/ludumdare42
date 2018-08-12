@@ -81,7 +81,6 @@ class ItemManager {
     const item = this.newItem();
     item.x = opts.x || 900;
     item.y = opts.y || 200;
-    console.log('dirMod', opts.dirMod);
     item.toss(opts.dirMod);
 
     this.dropGroup.add(item);

@@ -15,7 +15,6 @@ class EncounterManager {
   }
 
   newEncounter() {
-    console.log('EncounterManager.newEncounter');
     this.monster.genMonster();
     this.current = {
       active: true,
@@ -25,13 +24,12 @@ class EncounterManager {
     };
 
     this.loopEvent = this.game.time.events.loop(properties.turnTimer, this.nextTurn, this);
-    console.log('Loop event', this.loopEvent);
   }
 
   nextTurn() {
     const c = this.current;
     const combatant = c.attackArray[c.turnRound];
-    if (combatant.isAlive()) {
+    if (combatant.isAlive() && combatant.canAttack()) {
       this.inactTurn(c, combatant);
     } else {
       console.log(`${combatant.data.NAME} is dead, skipping turn...`);
@@ -52,16 +50,17 @@ class EncounterManager {
       target = this.monster.monster;
     }
 
-    console.log(`${combatant.data.NAME} attacks ${target.data.NAME}`);
-
     // Attack
     const attack = combatant.attack();
-    const result = target.defend(attack);
+    let result = false;
+    if (attack) { // lazy
+      result = target.defend(attack);
+    }
+
 
     // Post attack tasks
     if (target.data.FOE && result) {
       this.dropLoot.dispatch();
-      // this.dropLoot.dispatch({ x: 200, dirMod: -1 }); // This is the merchant code
     }
 
     this.prepNext(c);
@@ -79,7 +78,6 @@ class EncounterManager {
     console.log('Monster slain!');
     this.game.time.events.remove(this.loopEvent);
     this.game.time.events.add(properties.postBattleTimer, this.cleanUp, this);
-    console.log('this', this);
   }
 
   loseEncounter() {

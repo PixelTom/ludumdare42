@@ -23,6 +23,7 @@ class MonsterManager {
   }
 
   handleDeath() {
+    console.log('handleDeath');
     this.onDeath.dispatch();
   }
 }

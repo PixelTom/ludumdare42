@@ -58,15 +58,26 @@ class BaseChar extends Phaser.Sprite {
   }
 
   defend(attack) {
+    console.log('Attacking', attack.DAMAGE);
     // Try to block
     if (this.rollDice(this.data.BLOCK_CHANCE) && !attack.ITEM) {
       this.block();
       return false;
     }
 
+    if (this.data.FOE) {
+      console.log(`FOE HP: ${this.data.HP}`);
+      console.log(attack.DAMAGE);
+    }
     this.data.HP -= attack.DAMAGE;
     this.data.HP = Math.min(this.data.HP, this.data.MAX_HP); // Prevent overhealing
+    if (this.data.FOE) {
+      console.log(`FOE HP: ${this.data.HP}`);
+    }
     if (this.data.HP <= 0) {
+      if (this.data.FOE) {
+        console.log('FOE should be dead');
+      }
       this.die();
     }
 
@@ -86,6 +97,10 @@ class BaseChar extends Phaser.Sprite {
 
   }
 
+  canAttack() {
+    return true;
+  }
+
   rollDice(chance) {
     return Math.random() < chance;
   }
@@ -100,7 +115,9 @@ class BaseChar extends Phaser.Sprite {
   }
 
   die() {
-    console.log('call die');
+    if (!this.data.ALIVE) {
+      return;
+    }
     this.data.ALIVE = false;
     this.onDeath.dispatch();
     if (this.data.FOE) {
@@ -111,7 +128,6 @@ class BaseChar extends Phaser.Sprite {
   }
 
   revive() {
-    console.log('call revive');
     this.data.ALIVE = true;
     this.rotation = 0;
     this.data.HP = this.data.MAX_HP;

@@ -20,7 +20,7 @@ module.exports = {
   floorY: 500,
   baseY: 400,
   bagThreshold: 120,
-  heroThresholdX: 40,
+  heroThresholdX: 70,
   heroThresholdY: 100,
   sellTimeout: 1500,
 

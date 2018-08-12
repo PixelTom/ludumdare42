@@ -18,11 +18,18 @@ class CharArcher extends BaseChar {
     this.initData(data);
   }
 
-  attack() {
-    this.doAttackAnim();
+  canAttack() {
     if (this.data.ARROWS <= 0) {
       return false;
     }
+    return true;
+  }
+
+  attack() {
+    if (this.data.ARROWS <= 0) {
+      return false;
+    }
+    this.doAttackAnim();
     this.data.ARROWS -= 1;
     return {
       DAMAGE: this.data.ATTACK,
