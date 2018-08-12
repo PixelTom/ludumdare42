@@ -3,8 +3,8 @@ const properties = require('../properties');
 
 class MonsterChar extends BaseChar {
   constructor(game, key) {
-    key = key || 'tom_monster_generic';
-    super(game, 900, properties.baseY, 'tom_monster_generic', null);
+    key = key || 'tom_monster_minotaur';
+    super(game, 900, properties.baseY, key, null);
 
     const data = {
       HP: 5,
