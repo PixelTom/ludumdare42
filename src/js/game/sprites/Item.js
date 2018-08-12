@@ -231,7 +231,7 @@ class Item extends Phaser.Sprite {
       item = items[i];
       if (item.HEAL && forceHeal) {
         found = true;
-      } else if (item.VALUE == rarity) {
+      } else if (item.VALUE == rarity && !forceHeal) {
         found = true;
       }
     }
