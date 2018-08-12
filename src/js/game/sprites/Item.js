@@ -152,6 +152,12 @@ class Item extends Phaser.Sprite {
         HEAL: true,
       },
       {
+        KEY: 'item_aloe_1',
+        VALUE: 1,
+        STATUS: 'BURNED',
+        HEAL: true,
+      },
+      {
         KEY: 'item_junk_1',
         VALUE: 1,
         EXCLUSIONS: ['ARCHER', 'WARRIOR'],
