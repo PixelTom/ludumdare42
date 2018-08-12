@@ -22,7 +22,7 @@ module.exports = {
   bagThreshold: 120,
   heroThresholdX: 40,
   heroThresholdY: 100,
-  sellTimeout: 4500,
+  sellTimeout: 1500,
 
   // Explore properties
   exploreTimer: 3000, // How long to walk pre-battle
