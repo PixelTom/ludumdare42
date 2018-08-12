@@ -28,8 +28,6 @@ class Game extends Phaser.State {
     this.itemManager.connectHeroes(this.partyManager);
     this.encounterManager = new EncounterManager(this.game, this.partyManager, this.monsterManager);
     this.partyManager.dropLoot.add(this.itemManager.dropLoot, this.itemManager);
-    this.explorePhase();
-
 
     bosses = 0;
     const scoreCnt = this.game.add.group();
@@ -46,6 +44,16 @@ class Game extends Phaser.State {
     scoreCnt.add( textScore );
     scoreCnt.add( textScoreVal );
 
+    // music
+    this.bgMusic = this.game.add.audio('bg_music');
+    this.bgMusic.loop = true;
+    this.comMusic = this.game.add.audio('combat_music');
+    this.comMusic.loop = true;
+    this.sfx = {
+      combat: this.game.add.audio('enter_combat'),
+    };
+
+    this.explorePhase();
   }
 
   explorePhase() {
@@ -55,6 +63,11 @@ class Game extends Phaser.State {
     this.game.time.events.add(properties.exploreTimer, this.newEncounter, this);
 
     this.exploring = true;
+
+    // setTimeout( () => {
+    this.bgMusic.play()
+    this.comMusic.stop()
+    // }, 2000);
   }
 
   recheckItemWalks() {
@@ -74,6 +87,12 @@ class Game extends Phaser.State {
 
     // no bg manager because lazy
     this.exploring = false;
+
+    this.bgMusic.stop();
+    this.sfx.combat.play();
+    // this.sfx.combat.onStop.addOnce( () => {
+    this.comMusic.play();
+    // } );
   }
 
   update() {

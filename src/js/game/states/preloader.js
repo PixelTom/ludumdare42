@@ -32,6 +32,12 @@ class Preloader extends Phaser.State {
     this.game.load.image('icon_arrow', 'images/icon-arrow.png');
     this.game.load.image('title_merchant', 'images/title_merchant.png');
     this.game.load.image('title', 'images/title.png');
+
+    //audio
+    this.game.load.audio('bg_music', 'audio/music-idle-loop.mp3');
+    this.game.load.audio('combat_music', 'audio/music-combat-loop.mp3');
+    this.game.load.audio('enter_combat', 'audio/sfx-combat.mp3');
+
   }
 
   create() {

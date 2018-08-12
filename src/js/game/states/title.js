@@ -1,5 +1,7 @@
 const properties = require('../properties');
 
+let music;
+
 class Title extends Phaser.State {
   create(game) {
     this.setup();
@@ -16,10 +18,15 @@ class Title extends Phaser.State {
     merchant.x = 300;
     merchant.y = 800;
 
+    music = this.game.add.audio('bg_music');
+    music.loop = true;
+    music.play();
+
     this.game.input.onDown.add(this.startGame, this);
   }
 
   startGame() {
+    music.stop();
     this.game.state.start('Game');
   }
 }
