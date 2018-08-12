@@ -27,6 +27,9 @@ class Game extends Phaser.State {
     this.itemManager = new ItemManager(this.game);
     this.itemManager.connectHeroes(this.partyManager);
     this.encounterManager = new EncounterManager(this.game, this.partyManager, this.monsterManager);
+    this.encounterManager.onWin.add(this.winEncounter, this);
+    this.encounterManager.onLose.add(this.loseEncounter, this);
+    this.encounterManager.dropLoot.add(this.itemManager.dropLoot, this.itemManager);
     this.partyManager.dropLoot.add(this.itemManager.dropLoot, this.itemManager);
 
     bosses = 0;
@@ -78,9 +81,6 @@ class Game extends Phaser.State {
     console.log('New Encounter');
     this.partyManager.stop();
     // this.itemManager.stopWalk();
-    this.encounterManager.onWin.add(this.winEncounter, this);
-    this.encounterManager.onLose.add(this.loseEncounter, this);
-    this.encounterManager.dropLoot.add(this.itemManager.dropLoot, this.itemManager);
     this.encounterManager.newEncounter();
     // enemyMonster = new MonsterChar(this.game, this.EncounterManager.getMonster());
     // this.enemyGroup.add(enemyMonster);
