@@ -62,6 +62,7 @@ class ItemManager {
     item.dropped.add(this.itemDropped, this);
     item.tapped.add(this.itemTapped, this);
     item.dragUpdate.add( this.itemDragging, this ); // check if item is over something
+    // item.events.onAddedToGroup.add( this.checkForWalk, this ); // check if the item should be walking when added to dropGroup
     // this.bagGroup.add(item);
     return item;
   }
@@ -208,21 +209,29 @@ class ItemManager {
     }
   }
 
-  startWalk() { // drift the items when characters are walking
-    this.dropGroup.forEach((item) => {
-      item.walking = true;
-      item.body.velocity.x = -200;
-      item.body.drag.x = 0;
-    });
-  }
+  // checkForWalk( item, group ) { // if an item just get's added, redo walk if walking
+  //   if (group == this.dropGroup) {
+  //     if (this.game.state.getCurrentState().exploring) {
+  //       this.startWalk(); // recall it so all new dropped items keep walking
+  //     }
+  //   }
+  // }
 
-  stopWalk() { // stop the drift
-    this.dropGroup.forEach((item) => {
-      item.walking = false;
-      item.body.velocity.x = 0;
-      item.body.drag.x = 500;
-    });
-  }
+  // startWalk() { // drift the items when characters are walking
+  //   this.dropGroup.forEach((item) => {
+  //     item.walking = true;
+  //     item.body.velocity.x = -200;
+  //     item.body.drag.x = 0;
+  //   });
+  // }
+
+  // stopWalk() { // stop the drift
+  //   this.dropGroup.forEach((item) => {
+  //     item.walking = false;
+  //     item.body.velocity.x = 0;
+  //     item.body.drag.x = 500;
+  //   });
+  // }
 }
 
 module.exports = ItemManager;

@@ -29,27 +29,20 @@ class Game extends Phaser.State {
   explorePhase() {
     console.log('Exlore Phase');
     this.partyManager.walk();
-    this.itemManager.startWalk();
+    // this.itemManager.startWalk();
     this.game.time.events.add(properties.exploreTimer, this.newEncounter, this);
 
-    this.bgwalking = true;
+    this.exploring = true;
   }
 
-  update() {
-    if (this.bgwalking) {
-      for (const bg of this.dungBG) {
-        bg.x -= 2;
-        if (bg.x <= -bg.width) {
-          bg.x = bg.width;
-        }
-      }
-    }
+  recheckItemWalks() {
+    this.itemManager.startWalk();
   }
 
   newEncounter() {
     console.log('New Encounter');
     this.partyManager.stop();
-    this.itemManager.stopWalk();
+    // this.itemManager.stopWalk();
     this.encounterManager.onWin.add(this.winEncounter, this);
     this.encounterManager.onLose.add(this.loseEncounter, this);
     this.encounterManager.dropLoot.add(this.itemManager.dropLoot, this.itemManager);
@@ -59,7 +52,26 @@ class Game extends Phaser.State {
     // this.enemyGroup.add(enemyMonster);
 
     // no bg manager because lazy
-    this.bgwalking = false;
+    this.exploring = false;
+  }
+
+  update() {
+    if (this.exploring) {
+      for (const bg of this.dungBG) {
+        bg.x -= 2;
+        if (bg.x <= -bg.width) {
+          bg.x = bg.width;
+        }
+      }
+
+      this.itemManager.dropGroup.forEach( (item) => {
+        item.x -= 3;
+
+        if (item.x < 0) {
+          item.destroy();
+        }
+      } )
+    }
   }
 
   winEncounter() {

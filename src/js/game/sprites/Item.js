@@ -28,9 +28,9 @@ class Item extends Phaser.Sprite {
     console.log('dirMod', 1);
     this.loadTexture(this.giftKey);
     this.game.physics.arcade.enable(this, false);
-    this.game.physics.arcade.setBounds(0, 0, 1024, 512);
-    this.body.onWorldBounds = new Phaser.Signal();
-    this.body.onWorldBounds.add(this.onWorldBounds.bind(this));
+    this.game.physics.arcade.setBounds(-100, 0, 1024, 512); // let items fall out of screen a bit
+    // this.body.onWorldBounds = new Phaser.Signal();
+    // this.body.onWorldBounds.add(this.onWorldBounds.bind(this));
     this.body.collideWorldBounds = true;
     this.body.enable = true;
     this.body.bounce.y = 0.3;
@@ -110,11 +110,11 @@ class Item extends Phaser.Sprite {
     this.dragUpdate.dispatch(sprite, pointer, x, y);
   }
 
-  onWorldBounds(sprite, up, down, left, right) {
-    if (left && this.walking) {
-      this.destroy();
-    }
-  }
+  // onWorldBounds(sprite, up, down, left, right) {
+  //   if (left && this.walking) {
+  //     this.destroy();
+  //   }
+  // }
 
   genAttack(itemName) {
     switch (itemName) {
