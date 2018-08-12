@@ -63,9 +63,9 @@ class CharHUD extends Phaser.Group {
       this.metrics.push( armorTally )
     }
 
-    if (this.data.AMMO) {
+    if (this.data.ARROWS) {
       const ammoTally = this.addTally( {
-        prop: 'AMMO',
+        prop: 'ARROWS',
         img: 0x36eaff, // temp
         x: this.options.resourceX,
         y: this.options.resourceY,
