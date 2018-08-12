@@ -20,6 +20,12 @@ class CharWarrior extends BaseChar {
   }
 
   block() {
+    this.hud.statusText('BLOCKED', {
+      x: this.x - 100,
+      y: this.y - 100,
+      parent: this.parent,
+      color: 0xffffff,
+    });
     this.data.ARMOUR -= 1;
     if (this.data.ARMOUR <= 0) {
       this.data.BLOCK_CHANCE = 0;

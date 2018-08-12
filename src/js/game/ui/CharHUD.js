@@ -14,6 +14,7 @@ const COLOR = {
   poison: 0x36ff90,
   corrupt: 0x9e36ff,
   burn: 0xffa836,
+  blocked: 0xffffff,
 };
 
 
@@ -249,7 +250,6 @@ class CharHUD extends Phaser.Group {
       });
     }
   }
-
 
   statusText(text, {
     x, y, parent, color,

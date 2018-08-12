@@ -100,7 +100,12 @@ class BaseChar extends Phaser.Sprite {
 
   // Overwrite for warrior
   block() {
-
+    this.hud.statusText('BLOCKED', {
+      x: this.x - 100,
+      y: this.y - 100,
+      parent: this.parent,
+      color: 0xffffff,
+    });
   }
 
   canAttack() {
