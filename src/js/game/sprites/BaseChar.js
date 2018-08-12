@@ -39,7 +39,7 @@ class BaseChar extends Phaser.Sprite {
   }
 
   isEligible( item ){
-    if (!item || (!item && !item.itemKey)) return false;
+    if (!item || !item.itemKey) return false;
     if (item.itemKey.EXCLUSIONS.indexOf(this.data.NAME) >= 0) {
       return false;
     }
