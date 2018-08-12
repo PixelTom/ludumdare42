@@ -25,10 +25,12 @@ class Preloader extends Phaser.State {
     this.game.load.image('icon_coin', 'images/icon-coin.png');
     this.game.load.image('icon_shield', 'images/icon-shield.png');
     this.game.load.image('icon_arrow', 'images/icon-arrow.png');
+    this.game.load.image('title_merchant', 'images/title_merchant.png');
+    this.game.load.image('title', 'images/title.png');
   }
 
   create() {
-    this.game.state.start('Game');
+    this.game.state.start('Title');
   }
 }
 

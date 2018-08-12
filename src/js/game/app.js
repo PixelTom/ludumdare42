@@ -1,12 +1,14 @@
 const _ = require('lodash');
 const properties = require('./properties');
-const Boot = require('./states/Boot.js');
-const Preloader = require('./states/Preloader.js');
-const Game = require('./states/Game.js');
+const Boot = require('./states/boot.js');
+const Preloader = require('./states/preloader.js');
+const Game = require('./states/game.js');
+const Title = require('./states/title.js');
 
 const states = {
   Boot,
   Preloader,
+  Title,
   Game,
 };
 
