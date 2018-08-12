@@ -4,6 +4,10 @@ const EncounterManager = require('../logic/EncounterManager');
 const ItemManager = require('../logic/ItemManager');
 const properties = require('../properties');
 
+ // set global so it's not accessible via console. (this file should be scoped right?)
+let bosses = 0;
+let textScoreVal;
+
 class Game extends Phaser.State {
   create(game) {
     this.setup();
@@ -23,9 +27,25 @@ class Game extends Phaser.State {
     this.itemManager = new ItemManager(this.game);
     this.itemManager.connectHeroes(this.partyManager);
     this.encounterManager = new EncounterManager(this.game, this.partyManager, this.monsterManager);
+    this.partyManager.dropLoot.add(this.itemManager.dropLoot, this.itemManager);
     this.explorePhase();
 
-    this.partyManager.dropLoot.add(this.itemManager.dropLoot, this.itemManager);
+
+    bosses = 0;
+    const scoreCnt = this.game.add.group();
+    scoreCnt.x = 600;
+    scoreCnt.y = 20;
+    const textScore = this.game.make.text( 0, 0, 'Defeated:', {
+      font: 'normal 30px "Press Start 2P"',
+      fill: '#ffffff',
+    });
+    textScoreVal = this.game.make.text( 280, 0, bosses, {
+      font: 'normal 50px "Press Start 2P"',
+      fill: '#ffffff',
+    });
+    scoreCnt.add( textScore );
+    scoreCnt.add( textScoreVal );
+
   }
 
   explorePhase() {
@@ -77,11 +97,17 @@ class Game extends Phaser.State {
 
   winEncounter() {
     console.log('game.win');
+    bosses++;
+    this.updateScore();
     this.explorePhase();
   }
 
   loseEncounter() {
     console.log('Game over :(');
+  }
+
+  updateScore(){
+    textScoreVal.text = bosses;
   }
 }
 
