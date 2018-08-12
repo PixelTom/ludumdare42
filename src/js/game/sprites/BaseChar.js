@@ -53,9 +53,20 @@ class BaseChar extends Phaser.Sprite {
   }
 
   attack() {
+    this.doAttackAnim();
     return {
       DAMAGE: this.data.ATTACK,
     };
+  }
+
+  doAttackAnim() {
+    let offset;
+    if (this.data.FOE) {
+      offset = -10;
+    } else {
+      offset = 10;
+    }
+    this.attackAnim = this.game.add.tween(this).to({ x: this.x + offset }, 100, 'Linear', true, 0, 0, true);
   }
 
   defend(attack) {
@@ -94,6 +105,7 @@ class BaseChar extends Phaser.Sprite {
   walk() {
     this.walkAnim = this.game.add.tween(this).to({ y: this.y - 10 }, 100 + (Math.random() * 100), 'Linear', true, Math.random() * 100, -1, true);
   }
+
 
   stopWalking() {
     this.walkAnim.stop();

@@ -19,6 +19,7 @@ class CharArcher extends BaseChar {
   }
 
   attack() {
+    this.doAttackAnim();
     if (this.data.ARROWS <= 0) {
       return false;
     }
