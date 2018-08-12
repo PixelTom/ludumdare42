@@ -15,7 +15,7 @@ class BaseChar extends Phaser.Sprite {
     this.data.HP = this.data.HP || 5;
     this.data.STATUS = '';
 
-    this.hud = new CharHUD( this );
+    this.hud = new CharHUD(this);
   }
 
   isAlive() {
@@ -107,6 +107,11 @@ class BaseChar extends Phaser.Sprite {
     } else {
       this.rotation -= 1.571;
     }
+  }
+
+  revive() {
+    this.data.ALIVE = true;
+    this.rotation += 1.571;
   }
 }
 

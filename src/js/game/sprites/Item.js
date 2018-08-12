@@ -157,6 +157,11 @@ class Item extends Phaser.Sprite {
         STATUS: 'ARMOUR',
         HEAL: true,
       },
+      {
+        KEY: 'item_relic_1',
+        VALUE: 2,
+        STATUS: 'LIFE',
+      },
     ];
 
     for (let i = 0; i < items.length; i++) {

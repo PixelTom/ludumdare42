@@ -26,6 +26,12 @@ class CharArcher extends BaseChar {
     if (itemKey.STATUS == 'ARMOUR') {
       return false;
     }
+    if (itemKey.STATUS == 'LIFE') {
+      if (this.data.ALIVE) {
+        return false;
+      }
+      this.revive();
+    }
     return true;
   }
 }
