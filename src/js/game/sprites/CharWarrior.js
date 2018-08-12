@@ -39,6 +39,8 @@ class CharWarrior extends BaseChar {
         return false;
       }
       this.revive();
+      this.data.ARMOUR = 5;
+      this.data.BLOCK_CHANCE = 0.5;
     }
     return true;
   }

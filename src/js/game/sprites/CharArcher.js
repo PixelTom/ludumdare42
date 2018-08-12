@@ -18,10 +18,19 @@ class CharArcher extends BaseChar {
     this.initData(data);
   }
 
+  attack() {
+    if (this.data.ARROWS <= 0) {
+      return false;
+    }
+    this.data.ARROWS -= 1;
+    return {
+      DAMAGE: this.data.ATTACK,
+    };
+  }
+
   checkSpecialItem(itemKey) {
     if (itemKey.STATUS == 'ARROWS') {
       this.data.ARROWS = 5;
-      this.data.BLOCK_CHANCE = 5;
     }
     if (itemKey.STATUS == 'ARMOUR') {
       return false;
@@ -31,6 +40,7 @@ class CharArcher extends BaseChar {
         return false;
       }
       this.revive();
+      this.data.ARROWS = 5;
     }
     return true;
   }

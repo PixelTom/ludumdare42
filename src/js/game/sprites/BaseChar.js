@@ -100,6 +100,7 @@ class BaseChar extends Phaser.Sprite {
   }
 
   die() {
+    console.log('call die');
     this.data.ALIVE = false;
     this.onDeath.dispatch();
     if (this.data.FOE) {
@@ -110,8 +111,10 @@ class BaseChar extends Phaser.Sprite {
   }
 
   revive() {
+    console.log('call revive');
     this.data.ALIVE = true;
-    this.rotation += 1.571;
+    this.rotation = 0;
+    this.data.HP = this.data.MAX_HP;
   }
 }
 
