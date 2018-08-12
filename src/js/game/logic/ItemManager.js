@@ -1,6 +1,6 @@
 const _ = require('lodash');
 const properties = require('../properties');
-const Item = require('../sprites/item');
+const Item = require('../sprites/Item');
 
 // Handles the item and inventory management
 
