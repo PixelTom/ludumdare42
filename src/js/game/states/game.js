@@ -6,17 +6,17 @@ const properties = require('../properties');
 
 class Game extends Phaser.State {
   create(game) {
-    this.tempSetup();
+    this.setup();
   }
 
-  tempSetup() {
+  setup() {
     const bg = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'tom_bg');
     bg.anchor.setTo(0.5, 0.5);
 
-    //no bg manager because lazy
+    // no bg manager because lazy
     const dungBG1 = this.game.add.sprite(0, 0, 'dungeon_bg');
     const dungBG2 = this.game.add.sprite(dungBG1.width, 0, 'dungeon_bg');
-    this.dungBG = [ dungBG1, dungBG2 ]
+    this.dungBG = [dungBG1, dungBG2];
 
     this.partyManager = new PartyManager(this.game);
     this.monsterManager = new MonsterManager(this.game);
@@ -40,7 +40,7 @@ class Game extends Phaser.State {
       for (const bg of this.dungBG) {
         bg.x -= 2;
         if (bg.x <= -bg.width) {
-          bg.x = bg.width
+          bg.x = bg.width;
         }
       }
     }
@@ -58,7 +58,7 @@ class Game extends Phaser.State {
     // enemyMonster = new MonsterChar(this.game, this.EncounterManager.getMonster());
     // this.enemyGroup.add(enemyMonster);
 
-    //no bg manager because lazy
+    // no bg manager because lazy
     this.bgwalking = false;
   }
 
