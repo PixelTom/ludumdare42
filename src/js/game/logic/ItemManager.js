@@ -12,10 +12,9 @@ class ItemManager {
 
     this.itemGroup = this.game.add.group();
 
+    this.plopItem(0);
     this.plopItem(1);
-    this.plopItem(3);
-    this.plopItem(4);
-    this.plopItem(6);
+    this.plopItem(2);
   }
 
   setupInventory() {
@@ -58,22 +57,43 @@ class ItemManager {
   }
 
   newItem() {
-    const item = new Item(this.game, 300, 300, 'item_potion_1');
+    const item = new Item(this.game, 300, 300);
     item.dropped.add(this.itemDropped, this);
+    item.tapped.add(this.itemTapped, this);
     this.itemGroup.add(item);
     return item;
   }
 
   plopItem(slot) {
     const item = this.newItem();
-    item.placeInBag(this.inventory[slot]);
+    item.placeInBag(this.inventory[slot], true);
   }
 
-  dropLoot() {
+  dropLoot(opts = {}) {
+    opts.dirMod = opts.dirMod || 1;
     const item = this.newItem();
-    item.x = 900;
-    item.y = 200;
-    item.toss();
+    item.x = opts.x || 900;
+    item.y = opts.y || 200;
+    console.log('dirMod', opts.dirMod);
+    item.toss(opts.dirMod);
+  }
+
+  itemTapped(item) {
+    console.log('item', item);
+    // Get next available slot if possible
+    let slot = false;
+    for (let i = 0; i < this.inventory.length; i++) {
+      if (!this.inventory[i].occupied && !slot) {
+        slot = this.inventory[i];
+      }
+    }
+
+    if (!slot) {
+      // Flip it diablo style
+      item.flipIt();
+    } else {
+      item.placeInBag(slot);
+    }
   }
 
   itemDropped(item, pointer) {
@@ -87,7 +107,7 @@ class ItemManager {
         && item.y > slot.y - properties.bagThreshold
         && item.y < slot.y + properties.bagThreshold) {
         if (!slot.occupied) {
-          if (item.slotID) {
+          if (item.slotID >= 0) {
             this.inventory[item.slotID].occupied = false;
           }
           item.placeInBag(slot);
@@ -102,19 +122,31 @@ class ItemManager {
         && item.x < hero.x + properties.heroThresholdX
         && item.y > hero.y - (properties.heroThresholdY * 1.5)
         && item.y < hero.y + properties.heroThresholdY) {
-        if (item.slotID) {
+        if (item.slotID >= 0) {
           this.inventory[item.slotID].occupied = false;
+          item.slotID = -1;
         }
         found = hero.giveItem(item);
+        console.log('found', found);
         if (found) {
           item.destroy();
+        } else {
+          item.toss(0);
         }
       }
     }
 
     // Bounce it back if no luck
     if (!found) {
-      item.placeInBag(this.inventory[item.slotID]);
+      if (pointer.y < this.game.world.centerY) {
+        if (item.slotID >= 0) {
+          this.inventory[item.slotID].occupied = false;
+          item.slotID = -1;
+        }
+        item.toss(0);
+      } else {
+        item.placeInBag(this.inventory[item.slotID], true);
+      }
     }
   }
 }

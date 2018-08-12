@@ -13,6 +13,7 @@ class BaseChar extends Phaser.Sprite {
     this.data.ALIVE = this.data.ALIVE || true;
     this.data.ATTACK = this.data.ATTACK || 0;
     this.data.HP = this.data.HP || 5;
+    this.data.STATUS = '';
   }
 
   isAlive() {
@@ -22,13 +23,24 @@ class BaseChar extends Phaser.Sprite {
   // Give the hero an item. Return false by default.
   // Overwrite in Hero classes.
   giveItem(item) {
+    console.log('item', item);
+    if (item.itemKey.EXCLUSIONS.indexOf(this.data.NAME) >= 0) {
+      return false;
+    }
+
+    let consumed;
+
+    console.log('TomTest', this.data.NAME);
+
+
     switch (this.data.NAME) {
-      case 'Archer':
-      case 'Warrior':
-        this.defend(item.attack);
-        return true;
+      case 'ARCHER':
+      case 'WARRIOR':
+        this.defend(item.itemKey);
+        consumed = this.checkSpecialItem(item.itemKey); // Reject specials if needed
+        return consumed;
         break;
-      case 'Merchant':
+      case 'MERCHANT':
 
         return true;
         break;
@@ -45,20 +57,27 @@ class BaseChar extends Phaser.Sprite {
   }
 
   defend(attack) {
-    console.log(`Attacked for ${attack.DAMAGE} damage`);
     // Try to block
-    if (this.rollDice(this.data.BLOCK_CHANCE)) {
+    if (this.rollDice(this.data.BLOCK_CHANCE) && !attack.ITEM) {
       this.block();
       return false;
     }
+
     this.data.HP -= attack.DAMAGE;
     this.data.HP = Math.min(this.data.HP, this.data.MAX_HP); // Prevent overhealing
     if (this.data.HP <= 0) {
       this.die();
     }
-    return true;
 
-    console.log(`HP remaining: ${this.data.HP}`);
+    if (this.rollDice(attack.STATUS_CHANCE)) {
+      if (attack.STATUS == this.data.STATUS && attack.HEAL) {
+        this.data.STATUS = '';
+      } else {
+        this.data.STATUS = attack.STATUS;
+      }
+    }
+
+    return true;
   }
 
   // Overwrite for warrior

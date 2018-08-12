@@ -6,7 +6,7 @@ class CharMerchant extends BaseChar {
     super(game, 200, properties.baseY, 'tom_merchant', frame);
 
     const data = {
-      NAME: 'Merchant',
+      NAME: 'MERCHANT',
       FRIEND: true,
     };
 
