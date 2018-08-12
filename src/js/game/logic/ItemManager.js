@@ -13,9 +13,9 @@ class ItemManager {
     this.dropGroup = this.game.add.group();
     this.bagGroup = this.game.add.group();
 
-    this.plopItem(0);
-    this.plopItem(1);
-    this.plopItem(2);
+    this.plopItem(0, true);
+    this.plopItem(1, true);
+    this.plopItem(2, true);
   }
 
   setupInventory() {
@@ -57,18 +57,18 @@ class ItemManager {
     ];
   }
 
-  newItem() {
-    const item = new Item(this.game, 300, 300);
+  newItem(forceHeal = false) {
+    const item = new Item(forceHeal, this.game, 300, 300);
     item.dropped.add(this.itemDropped, this);
     item.tapped.add(this.itemTapped, this);
-    item.dragUpdate.add( this.itemDragging, this ); // check if item is over something
+    item.dragUpdate.add(this.itemDragging, this); // check if item is over something
     // item.events.onAddedToGroup.add( this.checkForWalk, this ); // check if the item should be walking when added to dropGroup
     // this.bagGroup.add(item);
     return item;
   }
 
-  plopItem(slot) {
-    const item = this.newItem();
+  plopItem(slot, forceHeal = false) {
+    const item = this.newItem(forceHeal);
     this.placeLoot(item, this.inventory[slot], true);
   }
 
@@ -129,8 +129,7 @@ class ItemManager {
         && item.x < hero.x + properties.heroThresholdX
         && item.y > hero.y - (properties.heroThresholdY * 1.5)
         && item.y < hero.y + properties.heroThresholdY) {
-
-        found = hero.isEligible(item)
+        found = hero.isEligible(item);
         if (found) {
           item.scale.x = 0.6;
           item.scale.y = 0.6;

@@ -65,7 +65,6 @@ class BaseChar extends Phaser.Sprite {
   }
 
   defend(attack) {
-    console.log('Attacking', attack);
     // Try to block
     if (this.rollDice(this.data.BLOCK_CHANCE) && !attack.ITEM) {
       this.block();
@@ -76,9 +75,9 @@ class BaseChar extends Phaser.Sprite {
 
     if (this.rollDice(attack.STATUS_CHANCE) && this.data.ALIVE) {
       if (attack.STATUS == this.data.STATUS && attack.HEAL) {
-        this.data.STATUS = '';
+        this.data.STATUS = null;
+        this.tint = 0xffffff;
       } else {
-        console.log('Status', attack.STATUS, 'colour', attack.COLOUR, 'attack.STATUS_CHANCE', attack.STATUS_CHANCE);
         this.data.STATUS = attack.STATUS;
         this.data.STATUS_COUNT = -1;
         if (attack.COLOUR) {
