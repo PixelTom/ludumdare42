@@ -44,7 +44,6 @@ class CharHUD extends Phaser.Group {
 
     // List of props and types of bars
     if (this.data.HP) {
-      console.log('HP made');
       const healthBar = this.addBar({
         prop: 'HP',
         limit: this.data.MAX_HP,

@@ -78,7 +78,6 @@ class ItemManager {
   }
 
   dropLoot(opts = {}) {
-    console.log('dropLoot called on ItemManager');
     opts.dirMod = opts.dirMod || 1;
     const item = this.newItem();
     item.x = opts.x || 900;

@@ -25,7 +25,6 @@ class Item extends Phaser.Sprite {
   }
 
   toss(dirMod = 1) {
-    console.log('dirMod', 1);
     this.loadTexture(this.giftKey);
     this.game.physics.arcade.enable(this, false);
     this.game.physics.arcade.setBounds(-100, 0, 1024, 512); // let items fall out of screen a bit

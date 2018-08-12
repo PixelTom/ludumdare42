@@ -82,8 +82,6 @@ class Game extends Phaser.State {
     this.partyManager.stop();
     // this.itemManager.stopWalk();
     this.encounterManager.newEncounter();
-    // enemyMonster = new MonsterChar(this.game, this.EncounterManager.getMonster());
-    // this.enemyGroup.add(enemyMonster);
 
     // no bg manager because lazy
     this.exploring = false;
