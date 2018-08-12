@@ -29,7 +29,7 @@ class CharWarrior extends BaseChar {
   checkSpecialItem(itemKey) {
     if (itemKey.STATUS == 'ARMOUR') {
       this.data.ARMOUR = 5;
-      this.data.BLOCK_CHANCE = 5;
+      this.data.BLOCK_CHANCE = 0.5;
     }
     if (itemKey.STATUS == 'ARROWS') {
       return false;
