@@ -61,6 +61,7 @@ class EncounterManager {
     // Post attack tasks
     if (target.data.FOE && result) {
       this.dropLoot.dispatch();
+      // this.dropLoot.dispatch({ x: 200, dirMod: -1 }); // This is the merchant code
     }
 
     this.prepNext(c);
