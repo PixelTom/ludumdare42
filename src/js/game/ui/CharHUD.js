@@ -23,9 +23,9 @@ class CharHUD extends Phaser.Group {
     super( game.world )
 
     this.options = _.defaults( {
-      healthX: -60,
+      healthX: -70,
       healthY: -250,
-      resourceX: -60,
+      resourceX: -70,
       resourceY: -280,
       resourceIcon: 'armor',
       resourceTarget: 'ARMOUR',
@@ -112,7 +112,7 @@ class CharHUD extends Phaser.Group {
 
 
   addBar( { prop, limit, color, x, y } ) {
-    const barWidth = 100
+    const barWidth = 120
     const barHeight = 20
     // const current = this.data[ prop ]
 
