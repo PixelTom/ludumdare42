@@ -123,6 +123,7 @@ class Game extends Phaser.State {
 
   loseEncounter() {
     console.log('Game over :(');
+    this.game.state.start('End');
   }
 
   updateScore() {

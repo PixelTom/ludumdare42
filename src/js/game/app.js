@@ -4,12 +4,14 @@ const Boot = require('./states/boot.js');
 const Preloader = require('./states/preloader.js');
 const Game = require('./states/game.js');
 const Title = require('./states/title.js');
+const End = require('./states/end.js');
 
 const states = {
   Boot,
   Preloader,
   Title,
   Game,
+  End,
 };
 
 const phaserGame = new Phaser.Game(properties.size.x, properties.size.y, Phaser.AUTO, 'game', {
