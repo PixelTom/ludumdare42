@@ -29,8 +29,8 @@ class Item extends Phaser.Sprite {
     this.loadTexture(this.giftKey);
     this.game.physics.arcade.enable(this, false);
     this.game.physics.arcade.setBounds(0, 0, 1024, 512);
-    this.body.onWorldBounds = new Phaser.Signal()
-    this.body.onWorldBounds.add( this.onWorldBounds.bind(this) );
+    this.body.onWorldBounds = new Phaser.Signal();
+    this.body.onWorldBounds.add(this.onWorldBounds.bind(this));
     this.body.collideWorldBounds = true;
     this.body.enable = true;
     this.body.bounce.y = 0.3;
@@ -107,11 +107,11 @@ class Item extends Phaser.Sprite {
 
   onDragUpdate(sprite, pointer, x, y) {
     if (!this.dragging) return;
-    this.dragUpdate.dispatch( sprite, pointer, x, y );
+    this.dragUpdate.dispatch(sprite, pointer, x, y);
   }
 
   onWorldBounds(sprite, up, down, left, right) {
-    if ( left && this.walking ) {
+    if (left && this.walking) {
       this.destroy();
     }
   }
@@ -153,6 +153,21 @@ class Item extends Phaser.Sprite {
       },
       {
         KEY: 'item_junk_1',
+        VALUE: 1,
+        EXCLUSIONS: ['ARCHER', 'WARRIOR'],
+      },
+      {
+        KEY: 'item_junk_2',
+        VALUE: 1,
+        EXCLUSIONS: ['ARCHER', 'WARRIOR'],
+      },
+      {
+        KEY: 'item_junk_3',
+        VALUE: 1,
+        EXCLUSIONS: ['ARCHER', 'WARRIOR'],
+      },
+      {
+        KEY: 'item_junk_4',
         VALUE: 1,
         EXCLUSIONS: ['ARCHER', 'WARRIOR'],
       },
