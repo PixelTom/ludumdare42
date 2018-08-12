@@ -3,16 +3,16 @@ const BaseChar = require('./BaseChar');
 const properties = require('../properties');
 
 class MonsterChar extends BaseChar {
-  constructor(game, key) {
+  constructor(prebuild, game, key) {
     key = key || 'tom_monster_minotaur';
     super(game, 900, properties.baseY, key, null);
 
     const data = {
       HP: 5,
       MAX_HP: 5,
-      NAME: 'Generic',
-      DAMAGE: 1,
-      BLOCK_CHANCE: 0.5,
+      NAME: 'Minodoot',
+      DAMAGE: prebuild.DAMAGE,
+      BLOCK_CHANCE: prebuild.BLOCK_CHANCE,
       FRIEND: false,
       FOE: true,
     };
