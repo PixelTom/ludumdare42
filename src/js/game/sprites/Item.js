@@ -167,7 +167,7 @@ class Item extends Phaser.Sprite {
         HEAL: true,
       },
       {
-        KEY: 'item_relic_1',
+        KEY: 'item_relic_2',
         VALUE: 2,
         STATUS: 'LIFE',
       },
