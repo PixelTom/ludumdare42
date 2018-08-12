@@ -24,12 +24,14 @@ class Game extends Phaser.State {
   explorePhase() {
     console.log('Exlore Phase');
     this.partyManager.walk();
+    this.itemManager.startWalk();
     this.game.time.events.add(properties.exploreTimer, this.newEncounter, this);
   }
 
   newEncounter() {
     console.log('New Encounter');
     this.partyManager.stop();
+    this.itemManager.stopWalk();
     this.encounterManager.onWin.add(this.winEncounter, this);
     this.encounterManager.onLose.add(this.loseEncounter, this);
     this.encounterManager.dropLoot.add(this.itemManager.dropLoot, this.itemManager);

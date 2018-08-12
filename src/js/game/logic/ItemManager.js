@@ -10,7 +10,8 @@ class ItemManager {
 
     this.inventory = this.setupInventory();
 
-    this.itemGroup = this.game.add.group();
+    this.bagGroup = this.game.add.group();
+    this.dropGroup = this.game.add.group();
 
     this.plopItem(0);
     this.plopItem(1);
@@ -60,13 +61,18 @@ class ItemManager {
     const item = new Item(this.game, 300, 300);
     item.dropped.add(this.itemDropped, this);
     item.tapped.add(this.itemTapped, this);
-    this.itemGroup.add(item);
+    // this.bagGroup.add(item);
     return item;
   }
 
   plopItem(slot) {
     const item = this.newItem();
-    item.placeInBag(this.inventory[slot], true);
+    this.placeLoot( item, this.inventory[slot], true );
+  }
+
+  placeLoot( item, slot, forced ) {
+    item.placeInBag( slot, forced );
+    this.bagGroup.add(item);
   }
 
   dropLoot(opts = {}) {
@@ -76,6 +82,8 @@ class ItemManager {
     item.y = opts.y || 200;
     console.log('dirMod', opts.dirMod);
     item.toss(opts.dirMod);
+
+    this.dropGroup.add(item);
   }
 
   itemTapped(item) {
@@ -92,7 +100,7 @@ class ItemManager {
       // Flip it diablo style
       item.flipIt();
     } else {
-      item.placeInBag(slot);
+      this.placeLoot(item, slot);
     }
   }
 
@@ -110,7 +118,7 @@ class ItemManager {
           if (item.slotID >= 0) {
             this.inventory[item.slotID].occupied = false;
           }
-          item.placeInBag(slot);
+          this.placeLoot(item, slot);
           found = true;
         }
       }
@@ -145,9 +153,17 @@ class ItemManager {
         }
         item.toss(0);
       } else {
-        item.placeInBag(this.inventory[item.slotID], true);
+        this.placeLoot(item, this.inventory[item.slotID], true);
       }
     }
+  }
+
+  startWalk() { // drift the items when characters are walking
+
+  }
+
+  stopWalk() { // stop the drift
+
   }
 }
 
