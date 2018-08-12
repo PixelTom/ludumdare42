@@ -53,6 +53,7 @@ class Game extends Phaser.State {
     this.encounterManager.onWin.add(this.winEncounter, this);
     this.encounterManager.onLose.add(this.loseEncounter, this);
     this.encounterManager.dropLoot.add(this.itemManager.dropLoot, this.itemManager);
+    this.partyManager.dropLoot.add(this.itemManager.dropLoot, this.itemManager);
     this.encounterManager.newEncounter();
     // enemyMonster = new MonsterChar(this.game, this.EncounterManager.getMonster());
     // this.enemyGroup.add(enemyMonster);

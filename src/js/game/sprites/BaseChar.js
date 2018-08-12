@@ -12,7 +12,7 @@ class BaseChar extends Phaser.Sprite {
     this.data = data;
     this.data.ALIVE = this.data.ALIVE || true;
     this.data.ATTACK = this.data.ATTACK || 0;
-    this.data.HP = this.data.HP || 5;
+    this.data.HP = this.data.HP || 0;
     this.data.STATUS = '';
 
     this.hud = new CharHUD(this);
@@ -25,29 +25,17 @@ class BaseChar extends Phaser.Sprite {
   // Give the hero an item. Return false by default.
   // Overwrite in Hero classes.
   giveItem(item) {
-    console.log('item', item);
     if (item.itemKey.EXCLUSIONS.indexOf(this.data.NAME) >= 0) {
       return false;
     }
 
     let consumed;
-
-    console.log('TomTest', this.data.NAME);
-
-
     switch (this.data.NAME) {
       case 'ARCHER':
       case 'WARRIOR':
         this.defend(item.itemKey);
         consumed = this.checkSpecialItem(item.itemKey); // Reject specials if needed
         return consumed;
-        break;
-      case 'MERCHANT':
-
-        return true;
-        break;
-      default:
-        return false;
         break;
     }
   }

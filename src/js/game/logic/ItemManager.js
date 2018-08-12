@@ -67,15 +67,16 @@ class ItemManager {
 
   plopItem(slot) {
     const item = this.newItem();
-    this.placeLoot( item, this.inventory[slot], true );
+    this.placeLoot(item, this.inventory[slot], true);
   }
 
-  placeLoot( item, slot, forced ) {
-    item.placeInBag( slot, forced );
+  placeLoot(item, slot, forced) {
+    item.placeInBag(slot, forced);
     this.bagGroup.add(item);
   }
 
   dropLoot(opts = {}) {
+    console.log('dropLoot called on ItemManager');
     opts.dirMod = opts.dirMod || 1;
     const item = this.newItem();
     item.x = opts.x || 900;
@@ -161,19 +162,19 @@ class ItemManager {
   }
 
   startWalk() { // drift the items when characters are walking
-    this.dropGroup.forEach( (item) => {
+    this.dropGroup.forEach((item) => {
       item.walking = true;
       item.body.velocity.x = -200;
       item.body.drag.x = 0;
-    } );
+    });
   }
 
   stopWalk() { // stop the drift
-    this.dropGroup.forEach( (item) => {
+    this.dropGroup.forEach((item) => {
       item.walking = false;
       item.body.velocity.x = 0;
       item.body.drag.x = 500;
-    } );
+    });
   }
 }
 

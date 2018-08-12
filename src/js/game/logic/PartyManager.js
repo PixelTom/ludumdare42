@@ -8,6 +8,7 @@ class PartyManager {
     this.game = game;
     this.genParty();
     this.onDeath = new Phaser.Signal();
+    this.dropLoot = new Phaser.Signal();
   }
 
   genParty() {
@@ -24,6 +25,7 @@ class PartyManager {
 
     this.warrior.onDeath.add(this.loseMember, this);
     this.archer.onDeath.add(this.loseMember, this);
+    this.merchant.dropLoot.add(this.onDropLoot, this);
   }
 
   // Get a random party member who is still alive
@@ -61,6 +63,11 @@ class PartyManager {
     if (this.getNextAlive() == null) {
       this.onDeath.dispatch();
     }
+  }
+
+  onDropLoot(obj) {
+    console.log('caught drop loot on partyManager');
+    this.dropLoot.dispatch(obj);
   }
 }
 
