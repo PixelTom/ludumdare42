@@ -1,3 +1,4 @@
+const CharHUD = require('../ui/CharHUD');
 const properties = require('../properties');
 
 class BaseChar extends Phaser.Sprite {
@@ -7,12 +8,13 @@ class BaseChar extends Phaser.Sprite {
     this.onDeath = new Phaser.Signal();
   }
 
-
   initData(data) {
     this.data = data;
     this.data.ALIVE = this.data.ALIVE || true;
     this.data.ATTACK = this.data.ATTACK || 0;
     this.data.HP = this.data.HP || 5;
+
+    this.hud = new CharHUD( this );
   }
 
   isAlive() {
