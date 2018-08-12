@@ -58,10 +58,9 @@ class Item extends Phaser.Sprite {
       this.body.enable = false;
     }
     slot.occupied = true;
-    this.x = slot.x;
-    this.y = slot.y;
-    this.scale.x = 1;
-    this.scale.y = 1;
+    const tweenSpeed = 100 + (Math.random() * 100);
+    this.bagAnim = this.game.add.tween(this).to({ y: slot.y, x: slot.x }, tweenSpeed, 'Linear', true);
+    this.scaleAnim = this.game.add.tween(this.scale).to({ y: 1, x: 1 }, tweenSpeed, 'Linear', true);
     this.slotID = slot.id;
     this.inInventory = true;
     if (forced) {
