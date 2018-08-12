@@ -10,8 +10,8 @@ class ItemManager {
 
     this.inventory = this.setupInventory();
 
-    this.bagGroup = this.game.add.group();
     this.dropGroup = this.game.add.group();
+    this.bagGroup = this.game.add.group();
 
     this.plopItem(0);
     this.plopItem(1);
