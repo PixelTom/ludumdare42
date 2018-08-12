@@ -10,9 +10,9 @@ class End extends Phaser.State {
   setup() {
     const dungBG1 = this.game.add.image(0, 0, 'dungeon_bg');
     const dungBG2 = this.game.add.image(0, 512, 'dungeon_bg');
-    const textScore = this.game.make.text(0, 0, 'YOUR PARTY HAS DIED!\nTEST', {
+    const textScore = this.game.add.text(200, 200, 'YOUR PARTY HAS DIED!\nTEST', {
       font: 'normal 30px "Press Start 2P"',
-      fill: '#ffffff',
+      fill: '#36ff90',
     });
 
     const merchant = this.game.add.sprite(0, 0, 'title_merchant');
@@ -26,7 +26,11 @@ class End extends Phaser.State {
     // music.loop = true;
     // music.play();
 
-    this.game.input.onDown.add(this.startGame, this);
+    const allowLeave = function () {
+      this.game.input.onDown.add(this.startGame, this);
+    };
+
+    this.game.time.events.add(2000, allowLeave, this);
   }
 
   startGame() {
