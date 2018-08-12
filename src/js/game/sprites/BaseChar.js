@@ -25,9 +25,7 @@ class BaseChar extends Phaser.Sprite {
   // Give the hero an item. Return false by default.
   // Overwrite in Hero classes.
   giveItem(item) {
-    if (item.itemKey.EXCLUSIONS.indexOf(this.data.NAME) >= 0) {
-      return false;
-    }
+    if (this.isEligible()) return false;
 
     let consumed;
     switch (this.data.NAME) {
@@ -38,6 +36,13 @@ class BaseChar extends Phaser.Sprite {
         return consumed;
         break;
     }
+  }
+
+  isEligible( item ){
+    if (item.itemKey.EXCLUSIONS.indexOf(this.data.NAME) >= 0) {
+      return false;
+    }
+    return true;
   }
 
   attack() {
