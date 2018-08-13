@@ -140,8 +140,6 @@ class Game extends Phaser.State {
   loseEncounter() {
     console.log('Game over :(');
     this.game.state.getCurrentState().sfx.musicCom.stop();
-    this.game.state.getCurrentState().sfx.lose.play();
-
     setTimeout(() => {
       this.game.state.start('End');
     }, 2000);

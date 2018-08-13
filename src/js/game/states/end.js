@@ -31,6 +31,8 @@ class End extends Phaser.State {
     };
 
     this.game.time.events.add(2000, allowLeave, this);
+
+    this.game.state.getCurrentState().sfx.lose.play();
   }
 
   startGame() {
