@@ -50,6 +50,10 @@ class CharArcher extends BaseChar {
     }
     return true;
   }
+
+  playAttackSound() {
+    this.game.state.getCurrentState().sfx.arrow.play();
+  }
 }
 
 module.exports = CharArcher;

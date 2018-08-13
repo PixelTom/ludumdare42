@@ -54,6 +54,17 @@ class Game extends Phaser.State {
     this.comMusic.loop = true;
     this.sfx = {
       combat: this.game.add.audio('enter_combat'),
+      arrow: this.game.add.audio('sfx-arrow'),
+      block: this.game.add.audio('sfx-block'),
+      hit: [this.game.add.audio('sfx-hit1'), this.game.add.audio('sfx-hit2')],
+      invDrop: this.game.add.audio('sfx-inventory-drop'),
+      invLift: this.game.add.audio('sfx-inventory-lift'),
+      invThrow: this.game.add.audio('sfx-inventory-throw'),
+      lose: this.game.add.audio('sfx-lose'),
+      monster: [this.game.add.audio('sfx-monster1'), this.game.add.audio('sfx-monster2'), this.game.add.audio('sfx-monster3')],
+      pop: [this.game.add.audio('sfx-pop1'), this.game.add.audio('sfx-pop2'), this.game.add.audio('sfx-pop3')],
+      sword: this.game.add.audio('sfx-sword'),
+      win: [this.game.add.audio('sfx-win-1'), this.game.add.audio('sfx-sfx-win-generic-1'), this.game.add.audio('sfx-sfx-win-generic-2'), this.game.add.audio('sfx-sfx-win0')],
     };
 
     this.explorePhase();

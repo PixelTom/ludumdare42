@@ -55,6 +55,10 @@ class MonsterChar extends BaseChar {
   checkStatus() {
     // Monsters can't suffer damage from statuses
   }
+
+  playAttackSound() {
+    _.sample(this.game.state.getCurrentState().sfx.monster).play();
+  }
 }
 
 module.exports = MonsterChar;

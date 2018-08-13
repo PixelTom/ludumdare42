@@ -55,6 +55,7 @@ class BaseChar extends Phaser.Sprite {
   }
 
   doAttackAnim() {
+    this.playAttackSound();
     let offset;
     if (this.data.FOE) {
       offset = -10;
@@ -62,6 +63,10 @@ class BaseChar extends Phaser.Sprite {
       offset = 10;
     }
     this.attackAnim = this.game.add.tween(this).to({ x: this.x + offset }, 100, 'Linear', true, 0, 0, true);
+  }
+
+  playAttackSound() {
+
   }
 
   defend(attack) {
@@ -116,6 +121,7 @@ class BaseChar extends Phaser.Sprite {
 
   // Overwrite for warrior
   block() {
+    this.game.state.getCurrentState().sfx.block.play();
     this.hud.statusText('BLOCKED', {
       x: this.x - 100,
       y: this.y - 100,

@@ -20,6 +20,7 @@ class CharWarrior extends BaseChar {
   }
 
   block() {
+    this.game.state.getCurrentState().sfx.block.play();
     this.hud.statusText('BLOCKED', {
       x: this.x - 100,
       y: this.y - 100,
@@ -49,6 +50,10 @@ class CharWarrior extends BaseChar {
       this.data.BLOCK_CHANCE = 0.5;
     }
     return true;
+  }
+
+  playAttackSound() {
+    this.game.state.getCurrentState().sfx.sword.play();
   }
 }
 
