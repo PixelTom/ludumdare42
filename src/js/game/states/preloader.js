@@ -56,7 +56,10 @@ class Preloader extends Phaser.State {
     this.game.load.audio('sfx-win-0', 'audio/sfx-win-0.mp3');
     this.game.load.audio('sfx-sfx-win-generic-1', 'audio/sfx-win-generic-1.mp3');
     this.game.load.audio('sfx-sfx-win-generic-2', 'audio/sfx-win-generic-2.mp3');
-
+    this.game.load.audio('sfx-laugh1', 'audio/sfx-laugh1.mp3');
+    this.game.load.audio('sfx-laugh2', 'audio/sfx-laugh2.mp3');
+    this.game.load.audio('sfx-laugh3', 'audio/sfx-laugh3.mp3');
+    this.game.load.audio('sfx-laugh4', 'audio/sfx-laugh4.mp3');
   }
 
   create() {

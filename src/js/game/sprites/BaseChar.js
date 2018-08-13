@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const CharHUD = require('../ui/CharHUD');
 const properties = require('../properties');
 
@@ -95,6 +96,9 @@ class BaseChar extends Phaser.Sprite {
   }
 
   damage(value) {
+    if (value > 0) {
+      _.sample(this.game.state.getCurrentState().sfx.hit).play();
+    }
     this.data.HP -= value;
     this.data.HP = Math.min(this.data.HP, this.data.MAX_HP); // Prevent overhealing
     if (this.data.HP <= 0) {
