@@ -1,7 +1,7 @@
 const npmProperties = require('../../../package.json');
 
 module.exports = {
-  title: 'Dungeon Trade',
+  title: 'Dungeon Trader',
   description: npmProperties.description,
   port: 3017,
   liveReloadPort: 3018,
