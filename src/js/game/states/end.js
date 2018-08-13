@@ -1,8 +1,13 @@
 const properties = require('../properties');
 
 let music;
+let bosses;
 
 class End extends Phaser.State {
+  init(defeated) {
+    bosses = defeated;
+  }
+
   create(game) {
     this.setup();
   }
@@ -10,7 +15,7 @@ class End extends Phaser.State {
   setup() {
     const dungBG1 = this.game.add.image(0, 0, 'dungeon_bg');
     const dungBG2 = this.game.add.image(0, 512, 'dungeon_bg');
-    const textScore = this.game.add.text(200, 200, 'YOUR PARTY HAS DIED!\nTEST', {
+    const textScore = this.game.add.text(200, 200, `YOUR PARTY HAS WIPED!\nYOU DEFEATED ${bosses} MONSTERS.`, {
       font: 'normal 30px "Press Start 2P"',
       fill: '#36ff90',
     });

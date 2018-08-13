@@ -145,7 +145,7 @@ class Game extends Phaser.State {
     console.log('Game over :(');
     this.game.state.getCurrentState().sfx.musicCom.stop();
     setTimeout(() => {
-      this.game.state.start('End');
+      this.game.state.start('End', true, false, bosses);
     }, 2000);
   }
 
