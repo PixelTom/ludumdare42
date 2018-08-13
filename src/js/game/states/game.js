@@ -66,6 +66,7 @@ class Game extends Phaser.State {
       sword: this.game.add.audio('sfx-sword'),
       win: [this.game.add.audio('sfx-win-1'), this.game.add.audio('sfx-sfx-win-generic-1'), this.game.add.audio('sfx-sfx-win-generic-2'), this.game.add.audio('sfx-sfx-win0')],
       laugh: [this.game.add.audio('sfx-laugh1'), this.game.add.audio('sfx-laugh2'), this.game.add.audio('sfx-laugh3'), this.game.add.audio('sfx-laugh4')],
+      scared: [this.game.add.audio('sfx-scared1'), this.game.add.audio('sfx-scared2'), this.game.add.audio('sfx-scared3')],
     };
 
     this.explorePhase();
