@@ -92,6 +92,8 @@ class Item extends Phaser.Sprite {
     this.bringToTop();
     this.dragging = true;
     console.log('Drag Start');
+
+    this.game.state.getCurrentState().sfx.invLift.play();
   }
 
   onDragStop(sprite, pointer) {
