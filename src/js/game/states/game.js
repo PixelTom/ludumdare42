@@ -65,14 +65,14 @@ class Game extends Phaser.State {
 
     bosses = 0;
     const scoreCnt = this.game.add.group();
-    scoreCnt.x = 600;
-    scoreCnt.y = 20;
-    const textScore = this.game.make.text(0, 10, 'Defeated:', {
-      font: 'normal 30px "Press Start 2P"',
+    scoreCnt.x = 300;
+    scoreCnt.y = 10;
+    const textScore = this.game.make.text(0, 5, 'Defeated:', {
+      font: 'normal 15px "Press Start 2P"',
       fill: '#ffffff',
     });
-    textScoreVal = this.game.make.text(280, 0, bosses, {
-      font: 'normal 50px "Press Start 2P"',
+    textScoreVal = this.game.make.text(140, 0, bosses, {
+      font: 'normal 25px "Press Start 2P"',
       fill: '#ffffff',
     });
     scoreCnt.add(textScore);
@@ -118,14 +118,14 @@ class Game extends Phaser.State {
   update() {
     if (this.exploring) {
       for (const bg of this.dungBG) {
-        bg.x -= 2;
+        bg.x -= 1;
         if (bg.x <= -bg.width) {
           bg.x = bg.width;
         }
       }
 
       this.itemManager.dropGroup.forEach((item) => {
-        item.x -= 3;
+        item.x -= 1.5;
 
         if (item.x < 0) {
           item.destroy();

@@ -9,18 +9,18 @@ class Title extends Phaser.State {
 
   setup() {
     const textScore = this.game.make.text(0, 0, 'TEST', {
-      font: 'normal 30px "Press Start 2P"',
+      font: 'normal 15px "Press Start 2P"',
       fill: '#ffffff',
     });
     const dungBG1 = this.game.add.image(0, 0, 'dungeon_bg');
-    const dungBG2 = this.game.add.image(0, 512, 'dungeon_bg');
+    const dungBG2 = this.game.add.image(0, 256, 'dungeon_bg');
     const title = this.game.add.image(0, 0, 'title');
 
     const merchant = this.game.add.sprite(0, 0, 'title_merchant');
     merchant.scale.x = 2;
     merchant.scale.y = 2;
-    merchant.x = 300;
-    merchant.y = 800;
+    merchant.x = 150;
+    merchant.y = 400;
 
     music = this.game.add.audio('bg_music');
     music.loop = true;
@@ -43,7 +43,7 @@ class Title extends Phaser.State {
         credits.destroy();
       }
       credits = this.game.add.text(this.game.world.centerX, this.game.world.height * 0.6, textArray[phase], {
-        font: 'normal 30px "Press Start 2P"',
+        font: 'normal 15px "Press Start 2P"',
         fill: '#36ff90',
         align: 'center',
       });

@@ -24,10 +24,10 @@ class CharHUD extends Phaser.Group {
     super(game.world);
 
     this.options = _.defaults({
-      healthX: -70,
-      healthY: -250,
-      resourceX: -70,
-      resourceY: -280,
+      healthX: -35,
+      healthY: -125,
+      resourceX: -35,
+      resourceY: -140,
       resourceIcon: 'armor',
       resourceTarget: 'ARMOUR',
     }, opt);
@@ -113,8 +113,8 @@ class CharHUD extends Phaser.Group {
   addBar({
     prop, limit, color, x, y,
   }) {
-    const barWidth = 120;
-    const barHeight = 20;
+    const barWidth = 60;
+    const barHeight = 10;
     // const current = this.data[ prop ]
 
     const bar = game.make.group();
@@ -158,7 +158,7 @@ class CharHUD extends Phaser.Group {
         diff = diff.toString();
       }
       this.statusText(diff, {
-        x: bar.x + bar.width * bar.scale.x + 50,
+        x: bar.x + bar.width * bar.scale.x + 25,
         y: bar.y,
         parent: bar.parent,
         color: COLOR.health,
@@ -186,8 +186,8 @@ class CharHUD extends Phaser.Group {
       if (group.children.length) {
         const lastChild = group.getChildAt(group.children.length - 1);
         if (stack) {
-          posY = lastChild.y - 10;
-          posX = lastChild.x - (Math.random() * 10) + 5;
+          posY = lastChild.y - 5;
+          posX = lastChild.x - (Math.random() * 5) + 2.5;
         } else {
           posX = lastChild.x + lastChild.width + padding;
         }
@@ -243,7 +243,7 @@ class CharHUD extends Phaser.Group {
     if (diff && diff < 0) {
       const icon = metric.icon();
       this.statusIcon(icon, {
-        x: metric.tally.group.x + (metric.tally.group.children.length) * (icon.width + 5),
+        x: metric.tally.group.x + (metric.tally.group.children.length) * (icon.width + 2.5),
         y: metric.tally.group.y,
         parent: metric.tally.group.parent,
       });
@@ -254,7 +254,7 @@ class CharHUD extends Phaser.Group {
     x, y, parent, color,
   }) {
     const stat = game.make.text(x, y, text, {
-      font: 'normal 30px "Press Start 2P"',
+      font: 'normal 15px "Press Start 2P"',
       fill: `#${color.toString(16)}`,
     });
     parent.add(stat);
@@ -273,7 +273,7 @@ class CharHUD extends Phaser.Group {
   }
 
   blipStatus(obj, duration = 500) {
-    const tween = game.add.tween(obj).to({ y: obj.y - 20 }, duration, 'Back');
+    const tween = game.add.tween(obj).to({ y: obj.y - 10 }, duration, 'Back');
     tween.onComplete.add(() => {
       obj.destroy();
     });

@@ -5,7 +5,7 @@ const properties = require('../properties');
 class MonsterChar extends BaseChar {
   constructor(prebuild, game, key) {
     key = key || 'tom_monster_minotaur';
-    super(game, 900, properties.baseY, key, null);
+    super(game, 450, properties.baseY, key, null);
 
     const data = {
       HP: 5,

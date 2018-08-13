@@ -4,7 +4,7 @@ const properties = require('../properties');
 
 class CharMerchant extends BaseChar {
   constructor(game, x, y, key, frame) {
-    super(game, 200, properties.baseY, 'tom_merchant', frame);
+    super(game, 100, properties.baseY, 'tom_merchant', frame);
 
     const data = {
       NAME: 'MERCHANT',
@@ -40,11 +40,11 @@ class CharMerchant extends BaseChar {
 
   trade() {
     while (this.data.ITEMS > 0) {
-      this.dropLoot.dispatch({ x: 200, dirMod: -1 });
+      this.dropLoot.dispatch({ x: 100, dirMod: -1 });
       this.data.ITEMS -= 1;
-      setTimeout( () => {
+      setTimeout(() => {
         _.sample(this.game.state.getCurrentState().sfx.pop).play();
-      }, Math.random() * 200 )
+      }, Math.random() * 200);
     }
     this.timer = null;
     this.throbY.stop();

@@ -59,9 +59,9 @@ class BaseChar extends Phaser.Sprite {
     this.playAttackSound();
     let offset;
     if (this.data.FOE) {
-      offset = -10;
+      offset = -5;
     } else {
-      offset = 10;
+      offset = 5;
     }
     this.attackAnim = this.game.add.tween(this).to({ x: this.x + offset }, 100, 'Linear', true, 0, 0, true);
   }
@@ -83,10 +83,12 @@ class BaseChar extends Phaser.Sprite {
       if (attack.STATUS == this.data.STATUS && attack.HEAL) {
         this.data.STATUS = null;
         this.tint = 0xffffff;
-      } else if (attack.STATUS != null) {
+      } else if (attack.STATUS != null && !attack.HEAL) {
         this.data.STATUS = attack.STATUS;
-        this.data.STATUS_SFX = attack.STATUS_SFX;
-        this.data.STATUS_SFX.play();
+        if (attack.STATUS_SFX) {
+          this.data.STATUS_SFX = attack.STATUS_SFX;
+          this.data.STATUS_SFX.play();
+        }
         this.data.STATUS_COUNT = -1;
         if (attack.COLOUR) {
           this.tint = attack.COLOUR;
@@ -116,10 +118,12 @@ class BaseChar extends Phaser.Sprite {
       this.data.STATUS_COUNT += 1;
       if (this.data.STATUS_COUNT > 0) {
         this.damage(1);
-        this.data.STATUS_SFX.play();
+        if (this.data.STATUS_SFX) {
+          this.data.STATUS_SFX.play();
+        }
         this.hud.statusText(this.data.STATUS, {
-          x: this.x - 100,
-          y: this.y - 100,
+          x: this.x - 50,
+          y: this.y - 50,
           parent: this.parent,
           color: 0xffffff,
         });
@@ -131,8 +135,8 @@ class BaseChar extends Phaser.Sprite {
   block() {
     this.game.state.getCurrentState().sfx.block.play();
     this.hud.statusText('BLOCKED', {
-      x: this.x - 100,
-      y: this.y - 100,
+      x: this.x - 50,
+      y: this.y - 50,
       parent: this.parent,
       color: 0xffffff,
     });
@@ -147,7 +151,7 @@ class BaseChar extends Phaser.Sprite {
   }
 
   walk() {
-    this.walkAnim = this.game.add.tween(this).to({ y: this.y - 10 }, 100 + (Math.random() * 100), 'Linear', true, Math.random() * 100, -1, true);
+    this.walkAnim = this.game.add.tween(this).to({ y: this.y - 5 }, 100 + (Math.random() * 100), 'Linear', true, Math.random() * 100, -1, true);
   }
 
 

@@ -3,7 +3,7 @@ const properties = require('../properties');
 
 class CharWarrior extends BaseChar {
   constructor(game, x, y, key, frame) {
-    super(game, 600, properties.baseY, 'tom_warrior', frame);
+    super(game, 300, properties.baseY, 'tom_warrior', frame);
 
     const data = {
       HP: 5,
@@ -22,8 +22,8 @@ class CharWarrior extends BaseChar {
   block() {
     this.game.state.getCurrentState().sfx.block.play();
     this.hud.statusText('BLOCKED', {
-      x: this.x - 100,
-      y: this.y - 100,
+      x: this.x - 50,
+      y: this.y - 50,
       parent: this.parent,
       color: 0xffffff,
     });

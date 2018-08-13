@@ -1,7 +1,6 @@
 class Preloader extends Phaser.State {
   preload() {
-    this.game.load.image('logo', 'images/phaser.png');
-    // Tom temp assets
+    // IMAGES
     this.game.load.image('tom_warrior', 'images/tom_warrior.png');
     this.game.load.image('tom_archer', 'images/tom_archer.png');
     this.game.load.image('tom_merchant', 'images/tom_merchant.png');
@@ -24,7 +23,6 @@ class Preloader extends Phaser.State {
     this.game.load.image('item_potion_1', 'images/item_potion_1.png');
     this.game.load.image('item_quiver_1', 'images/item_quiver_1.png');
     this.game.load.image('item_shield_1', 'images/item_shield_1.png');
-    // this.game.load.image('item_relic_1', 'images/item_relic_1.png');
     this.game.load.image('item_relic_2', 'images/item_relic_2.png');
     this.game.load.image('icon_coin', 'images/icon-coin.png');
     this.game.load.image('icon_shield', 'images/icon-shield.png');
@@ -32,7 +30,7 @@ class Preloader extends Phaser.State {
     this.game.load.image('title_merchant', 'images/title_merchant.png');
     this.game.load.image('title', 'images/title.png');
 
-    // audio
+    // AUDIO
     this.game.load.audio('bg_music', 'audio/music-idle-loop.mp3');
     this.game.load.audio('combat_music', 'audio/music-combat-loop.mp3');
     this.game.load.audio('enter_combat', 'audio/sfx-combat.mp3');

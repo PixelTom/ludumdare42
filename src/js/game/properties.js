@@ -8,8 +8,8 @@ module.exports = {
   mute: false,
   showStats: false,
   size: {
-    x: 1024,
-    y: 1024,
+    x: 512,
+    y: 512,
   },
   background: '#000',
   autoScale: false,
@@ -17,11 +17,11 @@ module.exports = {
 
   // Positional properties
   gravity: 1,
-  floorY: 500,
-  baseY: 400,
-  bagThreshold: 120,
-  heroThresholdX: 70,
-  heroThresholdY: 100,
+  floorY: 250,
+  baseY: 200,
+  bagThreshold: 60,
+  heroThresholdX: 35,
+  heroThresholdY: 50,
   sellTimeout: 1500,
 
   // Explore properties

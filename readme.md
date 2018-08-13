@@ -1,4 +1,4 @@
-# Ludum Dare 42
+# Dungeon Trader, Ludum Dare 42 entry
 
 Forked from https://github.com/PixelTom/phaser-es6-boilerplate
 

@@ -21,28 +21,28 @@ class ItemManager {
   setupInventory() {
     const slots = [
       {
-        id: 0, occupied: false, x: 128, y: 640,
+        id: 0, occupied: false, x: 64, y: 320,
       },
       {
-        id: 1, occupied: false, x: 384, y: 640,
+        id: 1, occupied: false, x: 192, y: 320,
       },
       {
-        id: 2, occupied: false, x: 640, y: 640,
+        id: 2, occupied: false, x: 320, y: 320,
       },
       {
-        id: 3, occupied: false, x: 896, y: 640,
+        id: 3, occupied: false, x: 448, y: 320,
       },
       {
-        id: 4, occupied: false, x: 128, y: 896,
+        id: 4, occupied: false, x: 64, y: 448,
       },
       {
-        id: 5, occupied: false, x: 384, y: 896,
+        id: 5, occupied: false, x: 192, y: 448,
       },
       {
-        id: 6, occupied: false, x: 640, y: 896,
+        id: 6, occupied: false, x: 320, y: 448,
       },
       {
-        id: 7, occupied: false, x: 896, y: 896,
+        id: 7, occupied: false, x: 448, y: 448,
       },
     ];
     return slots;
@@ -58,7 +58,7 @@ class ItemManager {
   }
 
   newItem(forceHeal = false) {
-    const item = new Item(forceHeal, this.game, 300, 300);
+    const item = new Item(forceHeal, this.game, 150, 150);
     item.dropped.add(this.itemDropped, this);
     item.tapped.add(this.itemTapped, this);
     item.dragUpdate.add(this.itemDragging, this); // check if item is over something
@@ -82,8 +82,8 @@ class ItemManager {
   dropLoot(opts = {}) {
     opts.dirMod = opts.dirMod || 1;
     const item = this.newItem();
-    item.x = opts.x || 900;
-    item.y = opts.y || 200;
+    item.x = opts.x || 450;
+    item.y = opts.y || 100;
     item.toss(opts.dirMod);
 
     this.dropGroup.add(item);
@@ -200,7 +200,7 @@ class ItemManager {
           item.destroy();
           this.game.state.getCurrentState().sfx.itemPlayer.play();
         } else {
-          this.dropTossZero( item )
+          this.dropTossZero(item);
         }
       }
     }
@@ -212,7 +212,7 @@ class ItemManager {
           this.inventory[item.slotID].occupied = false;
           item.slotID = -1;
         }
-        this.dropTossZero( item )
+        this.dropTossZero(item);
       } else {
         this.placeLoot(item, this.inventory[item.slotID], true);
       }

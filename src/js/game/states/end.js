@@ -14,16 +14,16 @@ class End extends Phaser.State {
 
   setup() {
     const dungBG1 = this.game.add.image(0, 0, 'dungeon_bg');
-    const dungBG2 = this.game.add.image(0, 512, 'dungeon_bg');
-    const textScore = this.game.add.text(this.game.world.centerX, 200, `YOUR PARTY HAS WIPED!\nYOU DEFEATED ${bosses} MONSTERS.`, {
-      font: 'normal 30px "Press Start 2P"',
+    const dungBG2 = this.game.add.image(0, 256, 'dungeon_bg');
+    const textScore = this.game.add.text(this.game.world.centerX, 100, `YOUR PARTY HAS WIPED!\nYOU DEFEATED ${bosses} MONSTERS.`, {
+      font: 'normal 15px "Press Start 2P"',
       fill: '#36ff90',
       align: 'center',
     });
     textScore.anchor.setTo(0.5, 0.5);
 
-    const textClick = this.game.add.text(this.game.world.centerX, 400, 'CLICK TO GO BACK TO TITLE', {
-      font: 'normal 30px "Press Start 2P"',
+    const textClick = this.game.add.text(this.game.world.centerX, 200, 'CLICK TO GO BACK TO TITLE', {
+      font: 'normal 15px "Press Start 2P"',
       fill: '#36ff90',
     });
     textClick.anchor.setTo(0.5, 0.5);
@@ -37,9 +37,9 @@ class End extends Phaser.State {
       npc.scale.x = opts.scaleX;
       npc.scale.y = opts.scaleY;
       npc.x = this.game.world.width * 2;
-      npc.y = 800;
+      npc.y = 400;
       this.game.add.tween(npc).to({ x: this.game.world.width * -1 }, 2000, 'Linear', true, opts.delay, -1, true);
-      this.game.add.tween(npc).to({ y: npc.y - 10 }, 50, 'Linear', true, 0, -1, true);
+      this.game.add.tween(npc).to({ y: npc.y - 5 }, 50, 'Linear', true, 0, -1, true);
       return npc;
     };
 

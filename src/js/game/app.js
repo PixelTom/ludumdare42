@@ -17,7 +17,7 @@ const states = {
 const phaserGame = new Phaser.Game(properties.size.x, properties.size.y, Phaser.AUTO, 'game', {
   create() {
     this.physics.startSystem(this.game.physics.arcade);
-    this.physics.arcade.setBounds(0, 0, 512, 500);
+    this.physics.arcade.setBounds(0, 0, 256, 250);
   },
 });
 

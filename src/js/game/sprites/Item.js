@@ -27,18 +27,18 @@ class Item extends Phaser.Sprite {
   toss(dirMod = 1) {
     this.loadTexture(this.giftKey);
     this.game.physics.arcade.enable(this, false);
-    this.game.physics.arcade.setBounds(-100, 0, 1024, 512); // let items fall out of screen a bit
+    this.game.physics.arcade.setBounds(-50, 0, 512, 256); // let items fall out of screen a bit
     // this.body.onWorldBounds = new Phaser.Signal();
     // this.body.onWorldBounds.add(this.onWorldBounds.bind(this));
     this.body.collideWorldBounds = true;
     this.body.enable = true;
     this.body.bounce.y = 0.3;
     this.body.bounce.x = 0.8;
-    this.body.gravity.y = 1500;
-    this.body.velocity.x = ((Math.random() * -800) - 250) * dirMod;
-    this.body.velocity.y = ((Math.random() * -450) - 100) * dirMod;
-    this.body.drag.x = 500;
-    this.body.drag.y = 50;
+    this.body.gravity.y = 750;
+    this.body.velocity.x = ((Math.random() * -400) - 125) * dirMod;
+    this.body.velocity.y = ((Math.random() * -225) - 50) * dirMod;
+    this.body.drag.x = 250;
+    this.body.drag.y = 25;
     this.scale.x = 0.5;
     this.scale.y = 0.5;
     this.inInventory = false;
@@ -47,8 +47,8 @@ class Item extends Phaser.Sprite {
   }
 
   flipIt() {
-    this.body.velocity.x = (Math.random() * -400) + 200;
-    this.body.velocity.y = (Math.random() * -450) - 100;
+    this.body.velocity.x = (Math.random() * -200) + 100;
+    this.body.velocity.y = (Math.random() * -225) - 50;
   }
 
   placeInBag(slot, forced = false) {
@@ -204,6 +204,7 @@ class Item extends Phaser.Sprite {
         KEY: 'item_relic_2',
         VALUE: 3,
         STATUS: 'LIFE',
+        HEAL: true,
         STATUS_CHANCE: -1,
       },
     ];

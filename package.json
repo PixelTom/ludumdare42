@@ -1,16 +1,16 @@
 {
-  "name": "phaser-js-boilerplate",
-  "version": "1.1.0",
-  "description": "A Grunty Phaser.js SDK",
+  "name": "Dungeon Trader",
+  "version": "1.0.0",
+  "description": "A Ludum Dare 42 Jam",
   "main": "build/js/app.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:lukewilde/phaser-js-boilerplate.git"
+    "url": "git@github.com:PixelTom/ludumdare42.git"
   },
-  "author": "Luke Wilde",
+  "author": "Thomas Gattenhof, Andrew Kurniawan",
   "license": "MIT",
   "browserify-shim": {
     "./src/js/lib/stats.min.js": "Stats"
