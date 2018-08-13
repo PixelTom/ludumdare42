@@ -24,6 +24,7 @@ class MonsterChar extends BaseChar {
         STATUS: null,
         STATUS_DAMAGE: 0,
         COLOUR: null,
+        SFX: null,
       },
       {
         STATUS: 'CORRUPTION',

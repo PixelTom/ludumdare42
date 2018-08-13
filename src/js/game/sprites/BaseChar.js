@@ -83,9 +83,10 @@ class BaseChar extends Phaser.Sprite {
       if (attack.STATUS == this.data.STATUS && attack.HEAL) {
         this.data.STATUS = null;
         this.tint = 0xffffff;
-      } else {
+      } else if (attack.STATUS != null) {
         this.data.STATUS = attack.STATUS;
         this.data.STATUS_SFX = attack.STATUS_SFX;
+        this.data.STATUS_SFX.play();
         this.data.STATUS_COUNT = -1;
         if (attack.COLOUR) {
           this.tint = attack.COLOUR;
