@@ -69,7 +69,7 @@ class Game extends Phaser.State {
       itemMonster: this.game.add.audio('sfx-pop3'),
       pop: [this.game.add.audio('sfx-pop1'), this.game.add.audio('sfx-pop2'), this.game.add.audio('sfx-pop3')],
       sword: this.game.add.audio('sfx-sword'),
-      win: [this.game.add.audio('sfx-win-0'), this.game.add.audio('sfx-win-1'), this.game.add.audio('sfx-sfx-win-generic-1'), this.game.add.audio('sfx-sfx-win-generic-2') ],
+      win: [this.game.add.audio('sfx-win-0'), this.game.add.audio('sfx-win-1'), this.game.add.audio('sfx-sfx-win-generic-1'), this.game.add.audio('sfx-sfx-win-generic-2')],
       laugh: [this.game.add.audio('sfx-laugh1'), this.game.add.audio('sfx-laugh2'), this.game.add.audio('sfx-laugh3'), this.game.add.audio('sfx-laugh4')],
       scared: [this.game.add.audio('sfx-scared1'), this.game.add.audio('sfx-scared2'), this.game.add.audio('sfx-scared3')],
     };
@@ -142,9 +142,9 @@ class Game extends Phaser.State {
     this.game.state.getCurrentState().sfx.musicCom.stop();
     this.game.state.getCurrentState().sfx.lose.play();
 
-    setTimeout( () => {
+    setTimeout(() => {
       this.game.state.start('End');
-    }, 2000 );
+    }, 2000);
   }
 
   updateScore() {
