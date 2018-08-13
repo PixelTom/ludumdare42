@@ -53,6 +53,8 @@ class Game extends Phaser.State {
     this.comMusic = this.game.add.audio('combat_music');
     this.comMusic.loop = true;
     this.sfx = {
+      musicBg: this.bgMusic,
+      musicCom: this.comMusic,
       combat: this.game.add.audio('enter_combat'),
       arrow: this.game.add.audio('sfx-arrow'),
       block: this.game.add.audio('sfx-block'),
@@ -64,7 +66,7 @@ class Game extends Phaser.State {
       monster: [this.game.add.audio('sfx-monster1'), this.game.add.audio('sfx-monster2'), this.game.add.audio('sfx-monster3')],
       pop: [this.game.add.audio('sfx-pop1'), this.game.add.audio('sfx-pop2'), this.game.add.audio('sfx-pop3')],
       sword: this.game.add.audio('sfx-sword'),
-      win: [this.game.add.audio('sfx-win-1'), this.game.add.audio('sfx-sfx-win-generic-1'), this.game.add.audio('sfx-sfx-win-generic-2'), this.game.add.audio('sfx-sfx-win0')],
+      win: [this.game.add.audio('sfx-win-0'), this.game.add.audio('sfx-win-1'), this.game.add.audio('sfx-sfx-win-generic-1'), this.game.add.audio('sfx-sfx-win-generic-2') ],
       laugh: [this.game.add.audio('sfx-laugh1'), this.game.add.audio('sfx-laugh2'), this.game.add.audio('sfx-laugh3'), this.game.add.audio('sfx-laugh4')],
       scared: [this.game.add.audio('sfx-scared1'), this.game.add.audio('sfx-scared2'), this.game.add.audio('sfx-scared3')],
     };

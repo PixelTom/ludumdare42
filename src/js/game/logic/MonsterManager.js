@@ -56,6 +56,8 @@ class MonsterManager {
 
   handleDeath() {
     console.log('handleDeath');
+    this.game.state.getCurrentState().sfx.musicCom.stop();
+    _.sample(this.game.state.getCurrentState().sfx.win).play();
     this.onDeath.dispatch();
   }
 }
