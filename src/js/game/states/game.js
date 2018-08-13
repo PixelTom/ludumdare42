@@ -22,31 +22,6 @@ class Game extends Phaser.State {
     const dungBG2 = this.game.add.sprite(dungBG1.width, 0, 'dungeon_bg');
     this.dungBG = [dungBG1, dungBG2];
 
-    this.partyManager = new PartyManager(this.game);
-    this.monsterManager = new MonsterManager(this.game);
-    this.itemManager = new ItemManager(this.game);
-    this.itemManager.connectHeroes(this.partyManager);
-    this.encounterManager = new EncounterManager(this.game, this.partyManager, this.monsterManager);
-    this.encounterManager.onWin.add(this.winEncounter, this);
-    this.encounterManager.onLose.add(this.loseEncounter, this);
-    this.encounterManager.dropLoot.add(this.itemManager.dropLoot, this.itemManager);
-    this.partyManager.dropLoot.add(this.itemManager.dropLoot, this.itemManager);
-
-    bosses = 0;
-    const scoreCnt = this.game.add.group();
-    scoreCnt.x = 600;
-    scoreCnt.y = 20;
-    const textScore = this.game.make.text(0, 10, 'Defeated:', {
-      font: 'normal 30px "Press Start 2P"',
-      fill: '#ffffff',
-    });
-    textScoreVal = this.game.make.text(280, 0, bosses, {
-      font: 'normal 50px "Press Start 2P"',
-      fill: '#ffffff',
-    });
-    scoreCnt.add(textScore);
-    scoreCnt.add(textScoreVal);
-
     // music
     this.bgMusic = this.game.add.audio('bg_music');
     this.bgMusic.loop = true;
@@ -73,6 +48,32 @@ class Game extends Phaser.State {
       laugh: [this.game.add.audio('sfx-laugh1'), this.game.add.audio('sfx-laugh2'), this.game.add.audio('sfx-laugh3'), this.game.add.audio('sfx-laugh4')],
       scared: [this.game.add.audio('sfx-scared1'), this.game.add.audio('sfx-scared2'), this.game.add.audio('sfx-scared3')],
     };
+
+    // other instances
+    this.partyManager = new PartyManager(this.game);
+    this.monsterManager = new MonsterManager(this.game);
+    this.itemManager = new ItemManager(this.game);
+    this.itemManager.connectHeroes(this.partyManager);
+    this.encounterManager = new EncounterManager(this.game, this.partyManager, this.monsterManager);
+    this.encounterManager.onWin.add(this.winEncounter, this);
+    this.encounterManager.onLose.add(this.loseEncounter, this);
+    this.encounterManager.dropLoot.add(this.itemManager.dropLoot, this.itemManager);
+    this.partyManager.dropLoot.add(this.itemManager.dropLoot, this.itemManager);
+
+    bosses = 0;
+    const scoreCnt = this.game.add.group();
+    scoreCnt.x = 600;
+    scoreCnt.y = 20;
+    const textScore = this.game.make.text(0, 10, 'Defeated:', {
+      font: 'normal 30px "Press Start 2P"',
+      fill: '#ffffff',
+    });
+    textScoreVal = this.game.make.text(280, 0, bosses, {
+      font: 'normal 50px "Press Start 2P"',
+      fill: '#ffffff',
+    });
+    scoreCnt.add(textScore);
+    scoreCnt.add(textScoreVal);
 
     this.explorePhase();
   }

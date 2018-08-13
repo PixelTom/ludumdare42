@@ -75,6 +75,8 @@ class ItemManager {
   placeLoot(item, slot, forced) {
     item.placeInBag(slot, forced);
     this.bagGroup.add(item);
+
+    this.game.state.getCurrentState().sfx.invDrop.play();
   }
 
   dropLoot(opts = {}) {
@@ -107,8 +109,10 @@ class ItemManager {
     if (!slot) {
       // Flip it diablo style
       item.flipIt();
+      this.game.state.getCurrentState().sfx.invThrow.play();
     } else {
       this.placeLoot(item, slot);
+      this.game.state.getCurrentState().sfx.invDrop.play();
     }
 
     // this.game.state.getCurrentState().sfx.itemPickup.play();
@@ -176,8 +180,6 @@ class ItemManager {
           }
           this.placeLoot(item, slot);
           found = true;
-
-          this.game.state.getCurrentState().sfx.invDrop.play();
         }
       }
     }
