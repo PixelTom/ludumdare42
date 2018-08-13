@@ -102,6 +102,7 @@ class BaseChar extends Phaser.Sprite {
     this.data.HP -= value;
     this.data.HP = Math.min(this.data.HP, this.data.MAX_HP); // Prevent overhealing
     if (this.data.HP <= 0) {
+      this.data.HP = 0;
       if (this.data.FOE) {
       }
       this.die();
