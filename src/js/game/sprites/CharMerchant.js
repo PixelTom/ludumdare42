@@ -42,6 +42,9 @@ class CharMerchant extends BaseChar {
     while (this.data.ITEMS > 0) {
       this.dropLoot.dispatch({ x: 200, dirMod: -1 });
       this.data.ITEMS -= 1;
+      setTimeout( () => {
+        _.sample(this.game.state.getCurrentState().sfx.pop).play();
+      }, Math.random() * 200 )
     }
     this.timer = null;
     this.throbY.stop();
