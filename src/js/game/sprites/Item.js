@@ -7,13 +7,10 @@ class Item extends Phaser.Sprite {
     this.generateKeys(forceHeal);
     this.anchor.setTo(0.5, 0.5);
     this.inputEnabled = true;
-    this.input.disableDrag();
-    this.input.draggable = false;
+    // this.input.disableDrag();
+    // this.input.draggable = false;
     this.events.onInputDown.add(this.onTap, this);
     this.events.onInputUp.add(this.onUp, this);
-    this.events.onDragStart.add(this.onDragStart, this);
-    this.events.onDragStop.add(this.onDragStop, this);
-    this.events.onDragUpdate.add(this.onDragUpdate, this);
     this.inInventory = false;
     this.dropped = new Phaser.Signal();
     this.tapped = new Phaser.Signal();
@@ -22,6 +19,17 @@ class Item extends Phaser.Sprite {
     this.slotID = -1;
     this.walking = false; // bool to check if items should be deleted when they hit the left of screen
     this.dragging = false; // bool to check if it's picked up atm
+
+    this.game.state.getCurrentState().inputHelper.makeDraggable( this );
+    this.customInput.onDragStart.add(this.onDragStart, this);
+    this.customInput.onDragStop.add(this.onDragStop, this);
+    this.customInput.onDragUpdate.add(this.onDragUpdate, this);
+    this.customInput.draggable = false;
+
+    // replaced
+    // this.events.onDragStart.add(this.onDragStart, this);
+    // this.events.onDragStop.add(this.onDragStop, this);
+    // this.events.onDragUpdate.add(this.onDragUpdate, this);
   }
 
   toss(dirMod = 1) {
@@ -42,8 +50,9 @@ class Item extends Phaser.Sprite {
     this.scale.x = 0.5;
     this.scale.y = 0.5;
     this.inInventory = false;
-    this.input.draggable = false;
-    this.input.disableDrag();
+    // this.input.draggable = false;
+    // this.input.disableDrag();
+    this.customInput.draggable = true;
   }
 
   flipIt() {
@@ -63,8 +72,9 @@ class Item extends Phaser.Sprite {
     this.slotID = slot.id;
     this.inInventory = true;
     if (forced) {
-      this.input.draggable = true;
-      this.input.enableDrag(true);
+      // this.input.draggable = true;
+      // this.input.enableDrag(true);
+      this.customInput.draggable = true;
     }
   }
 
@@ -80,8 +90,9 @@ class Item extends Phaser.Sprite {
   onUp(sprite, pointer) {
     console.log('onUp');
     if (this.inInventory) {
-      this.input.draggable = true;
-      this.input.enableDrag(true);
+      // this.input.draggable = true;
+      // this.input.enableDrag(true);
+      this.customInput.draggable = true;
     }
   }
 

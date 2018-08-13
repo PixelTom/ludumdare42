@@ -2,6 +2,7 @@ const MonsterManager = require('../logic/MonsterManager');
 const PartyManager = require('../logic/PartyManager');
 const EncounterManager = require('../logic/EncounterManager');
 const ItemManager = require('../logic/ItemManager');
+const InputHelper = require('../logic/InputHelper');
 const properties = require('../properties');
 
 // set global so it's not accessible via console. (this file should be scoped right?)
@@ -53,6 +54,7 @@ class Game extends Phaser.State {
     };
 
     // other instances
+    this.inputHelper = new InputHelper( document.getElementById('game').children[0], this.game );
     this.partyManager = new PartyManager(this.game);
     this.monsterManager = new MonsterManager(this.game);
     this.itemManager = new ItemManager(this.game);
