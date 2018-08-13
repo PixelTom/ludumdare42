@@ -32,7 +32,6 @@ class EncounterManager {
     if (combatant.isAlive() && combatant.canAttack()) {
       this.inactTurn(c, combatant);
     } else {
-      console.log(`${combatant.data.NAME} is dead, skipping turn...`);
       this.prepNext(c);
       this.nextTurn();
     }
@@ -76,13 +75,11 @@ class EncounterManager {
   }
 
   winEncounter() {
-    console.log('Monster slain!');
     this.game.time.events.remove(this.loopEvent);
     this.game.time.events.add(properties.postBattleTimer, this.cleanUp, this);
   }
 
   loseEncounter() {
-    console.log('Party slain!');
     this.game.time.events.remove(this.loopEvent);
     this.onLose.dispatch();
   }

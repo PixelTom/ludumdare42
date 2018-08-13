@@ -74,11 +74,9 @@ class Item extends Phaser.Sprite {
       return;
     }
     this.tapped.dispatch(this);
-    console.log('tapped');
   }
 
   onUp(sprite, pointer) {
-    console.log('onUp');
     if (this.inInventory) {
       this.input.draggable = true;
       this.input.enableDrag(true);
@@ -91,7 +89,6 @@ class Item extends Phaser.Sprite {
     }
     this.bringToTop();
     this.dragging = true;
-    console.log('Drag Start');
 
     this.game.state.getCurrentState().sfx.invLift.play();
   }
@@ -100,7 +97,6 @@ class Item extends Phaser.Sprite {
     if (!this.inInventory) {
       return;
     }
-    console.log('Drop Start');
     this.dragging = false;
     this.dropped.dispatch(sprite, pointer);
   }

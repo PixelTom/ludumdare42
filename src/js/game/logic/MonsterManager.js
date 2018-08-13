@@ -42,7 +42,6 @@ class MonsterManager {
     const buffItUp = function (buff, prop) {
       buff.turns -= 1;
       if (buff.turns <= 0) {
-        console.log('Buff!');
         buff.turns = buff.reset;
         prop = Math.min(prop + buff.buff, buff.max);
       }
@@ -51,11 +50,9 @@ class MonsterManager {
 
     this.diff.BLOCK_CHANCE = buffItUp(this.blockBuff, this.diff.BLOCK_CHANCE);
     this.diff.DAMAGE = buffItUp(this.damageBuff, this.diff.DAMAGE);
-    console.log('DIFF', this.diff);
   }
 
   handleDeath() {
-    console.log('handleDeath');
     this.game.state.getCurrentState().sfx.musicCom.stop();
     _.sample(this.game.state.getCurrentState().sfx.win).play();
     this.onDeath.dispatch();

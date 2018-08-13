@@ -66,7 +66,6 @@ class PartyManager {
   }
 
   onDropLoot(obj) {
-    console.log('caught drop loot on partyManager');
     this.dropLoot.dispatch(obj);
   }
 }

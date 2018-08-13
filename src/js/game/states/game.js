@@ -89,7 +89,6 @@ class Game extends Phaser.State {
   }
 
   explorePhase() {
-    console.log('Exlore Phase');
     this.partyManager.walk();
     // this.itemManager.startWalk();
     this.game.time.events.add(properties.exploreTimer, this.newEncounter, this);
@@ -107,7 +106,6 @@ class Game extends Phaser.State {
   }
 
   newEncounter() {
-    console.log('New Encounter');
     this.partyManager.stop();
     // this.itemManager.stopWalk();
     this.encounterManager.newEncounter();
@@ -142,14 +140,12 @@ class Game extends Phaser.State {
   }
 
   winEncounter() {
-    console.log('game.win');
     bosses++;
     this.updateScore();
     this.explorePhase();
   }
 
   loseEncounter() {
-    console.log('Game over :(');
     this.game.state.getCurrentState().sfx.musicCom.stop();
     setTimeout(() => {
       this.game.state.start('End', true, false, bosses);

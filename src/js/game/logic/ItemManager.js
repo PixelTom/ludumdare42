@@ -49,7 +49,6 @@ class ItemManager {
   }
 
   connectHeroes(partyManager) {
-    console.log('connectHeroes');
     this.heroes = [
       partyManager.merchant,
       partyManager.archer,
@@ -97,7 +96,6 @@ class ItemManager {
   }
 
   itemTapped(item) {
-    console.log('item', item);
     // Get next available slot if possible
     let slot = false;
     for (let i = 0; i < this.inventory.length; i++) {
@@ -195,7 +193,6 @@ class ItemManager {
           item.slotID = -1;
         }
         found = hero.giveItem(item);
-        console.log('found', found);
         if (found) {
           item.destroy();
           this.game.state.getCurrentState().sfx.itemPlayer.play();
