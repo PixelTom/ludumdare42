@@ -161,6 +161,7 @@ class BaseChar extends Phaser.Sprite {
     if (this.data.FOE) {
       this.rotation += 1.571;
     } else {
+      _.sample(this.game.state.getCurrentState().sfx.scared).play();
       this.rotation -= 1.571;
     }
   }
