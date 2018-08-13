@@ -5,7 +5,6 @@ class Preloader extends Phaser.State {
     this.game.load.image('tom_warrior', 'images/tom_warrior.png');
     this.game.load.image('tom_archer', 'images/tom_archer.png');
     this.game.load.image('tom_merchant', 'images/tom_merchant.png');
-    this.game.load.image('tom_monster_generic', 'images/tom_monster_generic.png');
     this.game.load.image('tom_monster_minotaur', 'images/tom_monster_minotaur.png');
     this.game.load.image('tom_bg', 'images/tom_bg.png');
     this.game.load.image('dungeon_bg', 'images/dungeon_bg.png');
