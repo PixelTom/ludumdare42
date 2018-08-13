@@ -77,7 +77,6 @@ class EncounterManager {
 
   winEncounter() {
     console.log('Monster slain!');
-    _.sample(this.game.state.getCurrentState().sfx.win).play();
     this.game.time.events.remove(this.loopEvent);
     this.game.time.events.add(properties.postBattleTimer, this.cleanUp, this);
   }
