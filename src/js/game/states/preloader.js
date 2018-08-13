@@ -37,11 +37,10 @@ class Preloader extends Phaser.State {
     this.game.load.audio('bg_music', 'audio/music-idle-loop.mp3');
     this.game.load.audio('combat_music', 'audio/music-combat-loop.mp3');
     this.game.load.audio('enter_combat', 'audio/sfx-combat.mp3');
-
     this.game.load.audio('sfx-arrow', 'audio/sfx-arrow.mp3');
     this.game.load.audio('sfx-block', 'audio/sfx-block.mp3');
     this.game.load.audio('sfx-hit1', 'audio/sfx-hit1.mp3');
-    this.game.load.audio('sfx-hit2', 'audio/sfx-arrohit2w.mp3');
+    this.game.load.audio('sfx-hit2', 'audio/sfx-hit2.mp3');
     this.game.load.audio('sfx-inventory-drop', 'audio/sfx-inventory-drop.mp3');
     this.game.load.audio('sfx-inventory-lift', 'audio/sfx-inventory-lift.mp3');
     this.game.load.audio('sfx-inventory-throw', 'audio/sfx-inventory-throw.mp3');
@@ -54,9 +53,10 @@ class Preloader extends Phaser.State {
     this.game.load.audio('sfx-pop3', 'audio/sfx-pop3.mp3');
     this.game.load.audio('sfx-sword', 'audio/sfx-sword.mp3');
     this.game.load.audio('sfx-win-1', 'audio/sfx-win-1.mp3');
+    this.game.load.audio('sfx-win-0', 'audio/sfx-win-0.mp3');
     this.game.load.audio('sfx-sfx-win-generic-1', 'audio/sfx-win-generic-1.mp3');
     this.game.load.audio('sfx-sfx-win-generic-2', 'audio/sfx-win-generic-2.mp3');
-    this.game.load.audio('sfx-sfx-win0', 'audio/sfx-win0.mp3');
+
   }
 
   create() {
