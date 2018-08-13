@@ -1,4 +1,4 @@
-var properties = require('./src/js/game/properties.js');
+const properties = require('./src/js/game/properties.js');
 
 module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
@@ -16,13 +16,13 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-open');
   grunt.loadNpmTasks('grunt-pngmin');
 
-  var productionBuild = !!(grunt.cli.tasks.length && grunt.cli.tasks[0] === 'build');
+  const productionBuild = !!(grunt.cli.tasks.length && grunt.cli.tasks[0] === 'build');
 
   grunt.initConfig({
 
     pkg: grunt.file.readJSON('package.json'),
 
-    properties: properties,
+    properties,
 
     project: {
       src: 'src/js',
@@ -31,63 +31,63 @@ module.exports = function (grunt) {
       bundle: 'build/js/app.min.js',
       port: properties.port,
       banner:
-        '/*\n' +
-        ' * <%= properties.title %>\n' +
-        ' * <%= pkg.description %>\n' +
-        ' *\n' +
-        ' * @author <%= pkg.author %>\n' +
-        ' * @version <%= pkg.version %>\n' +
-        ' * @copyright <%= pkg.author %>\n' +
-        ' * @license <%= pkg.license %> licensed\n' +
-        ' *\n' +
-        ' * Made using Phaser JS Boilerplate' +
-        ' <https://github.com/lukewilde/phaser-js-boilerplate>\n' +
-        ' */\n'
+        '/*\n'
+        + ' * <%= properties.title %>\n'
+        + ' * <%= pkg.description %>\n'
+        + ' *\n'
+        + ' * @author <%= pkg.author %>\n'
+        + ' * @version <%= pkg.version %>\n'
+        + ' * @copyright <%= pkg.author %>\n'
+        + ' * @license <%= pkg.license %> licensed\n'
+        + ' *\n'
+        + ' * Made using Phaser JS Boilerplate'
+        + ' <https://github.com/lukewilde/phaser-js-boilerplate>\n'
+        + ' */\n',
     },
 
     connect: {
       dev: {
         options: {
           port: '<%= project.port %>',
-          base: './build'
-        }
-      }
+          base: './build',
+        },
+      },
     },
 
     jshint: {
       files: [
         'gruntfile.js',
-        '<%= project.js %>'
+        '<%= project.js %>',
       ],
       options: {
-        jshintrc: '.jshintrc'
-      }
+        jshintrc: '.jshintrc',
+      },
     },
 
     watch: {
       options: {
-        livereload: productionBuild ? false : properties.liveReloadPort
+        livereload: productionBuild ? false : properties.liveReloadPort,
       },
       js: {
         files: '<%= project.dest %>/**/*.js',
-        tasks: ['jade']
+        tasks: ['jade'],
       },
       jade: {
         files: 'src/templates/*.jade',
-        tasks: ['jade']
+        tasks: ['jade'],
       },
       stylus: {
         files: 'src/style/*.styl',
-        tasks: ['stylus']
+        tasks: ['stylus'],
       },
       images: {
         files: 'src/images/**/*',
-        tasks: ['copy:images']
+        tasks: ['copy:images'],
       },
-      audio:{
+      audio: {
         files: 'src/audio/**/*',
-        tasks: ['copy:audio']
-      }
+        tasks: ['copy:audio'],
+      },
     },
 
     browserify: {
@@ -95,54 +95,54 @@ module.exports = function (grunt) {
         src: ['<%= project.src %>/game/app.js'],
         dest: '<%= project.bundle %>',
         options: {
-          transform: [['browserify-shim'], ["babelify", { "presets": ["es2015"] }]],
+          transform: [['browserify-shim'], ['babelify', { presets: ['es2015'] }]],
           watch: true,
           browserifyOptions: {
-            debug: !productionBuild
-          }
-        }
-      }
+            debug: !productionBuild,
+          },
+        },
+      },
     },
 
     open: {
       server: {
-        path: 'http://localhost:<%= project.port %>'
-      }
+        path: 'http://localhost:<%= project.port %>',
+      },
     },
 
     cacheBust: {
       options: {
-        assets: ['audio/**', 'images/**', 'js/**', 'style/**'],
+        assets: ['js/**', 'style/**'],
         baseDir: './build/',
         deleteOriginals: true,
-        length: 5
+        length: 5,
       },
       files: {
-        src: ['./build/js/app.min.*', './build/index.html']
-      }
+        src: ['./build/js/app.min.*', './build/index.html'],
+      },
     },
 
     jade: {
       compile: {
         options: {
           data: {
-            properties: properties,
-            productionBuild: productionBuild
-          }
+            properties,
+            productionBuild,
+          },
         },
         files: {
-          'build/index.html': ['src/templates/index.jade']
-        }
-      }
+          'build/index.html': ['src/templates/index.jade'],
+        },
+      },
     },
 
     stylus: {
       compile: {
         files: { 'build/style/index.css': ['src/style/index.styl'] },
-          options: {
-            sourcemaps: !productionBuild
-        }
-      }
+        options: {
+          sourcemaps: !productionBuild,
+        },
+      },
     },
 
     clean: ['./build/'],
@@ -150,59 +150,66 @@ module.exports = function (grunt) {
     pngmin: {
       options: {
         ext: '.png',
-        force: true
+        force: true,
       },
-      compile: {
-        files: [ { src: 'src/images/*.png', dest: 'src/images/' } ] }
-      },
+      compile: { files: [{ src: 'src/images/*.png', dest: 'src/images/' }] },
+    },
 
     copy: {
       images: {
-        files: [ { expand: true, cwd: 'src/images/', src: ['**'], dest: 'build/images/' } ]
+        files: [{
+          expand: true, cwd: 'src/images/', src: ['**'], dest: 'build/images/',
+        }],
       },
       audio: {
-        files: [ { expand: true, cwd: 'src/audio/', src: ['**'], dest: 'build/audio/' } ]
+        files: [{
+          expand: true, cwd: 'src/audio/', src: ['**'], dest: 'build/audio/',
+        }],
       },
       phaserArcade: {
-        files: [ {
+        files: [{
           src: ['node_modules/phaser-ce/build/custom/phaser-arcade-physics.js'],
-          dest: 'build/js/phaser.js'
-        } ]
+          dest: 'build/js/phaser.js',
+        }],
       },
       phaserArcadeMin: {
-        files: [ {
+        files: [{
           src: ['node_modules/phaser-ce/build/custom/phaser-arcade-physics.min.js'],
-          dest: 'build/js/phaser.js'
-        } ]
+          dest: 'build/js/phaser.js',
+        }],
       },
       phaserP2: {
-        files: [ {
+        files: [{
           src: ['node_modules/phaser-ce/build/phaser.js'],
-          dest: 'build/js/phaser.js'
-        } ]
+          dest: 'build/js/phaser.js',
+        }],
       },
       phaserP2Min: {
-        files: [ {
+        files: [{
           src: ['node_modules/phaser-ce/build/phaser.min.js'],
-          dest: 'build/js/phaser.js'
-        } ]
-      }
+          dest: 'build/js/phaser.js',
+        }],
+      },
     },
 
     uglify: {
       options: {
-        banner: '<%= project.banner %>'
+        banner: '<%= project.banner %>',
       },
       dist: {
-        files: { '<%= project.bundle %>': '<%= project.bundle %>' }
-      }
+        files: { '<%= project.bundle %>': '<%= project.bundle %>' },
+      },
     },
 
     compress: {
       options: { archive: '<%= pkg.name %>.zip' },
-      zip: { files: [ { expand: true, cwd: 'build/', src: ['**/*'], dest: '<%= pkg.name %>/' } ] },
-      cocoon: { files: [ { expand: true, cwd: 'build/', src: ['**/*'] } ] }
-    }
+      zip: {
+        files: [{
+          expand: true, cwd: 'build/', src: ['**/*'], dest: '<%= pkg.name %>/',
+        }],
+      },
+      cocoon: { files: [{ expand: true, cwd: 'build/', src: ['**/*'] }] },
+    },
   });
 
   grunt.registerTask('default', [
@@ -215,11 +222,11 @@ module.exports = function (grunt) {
     'copy:phaserArcade',
     'connect',
     'open',
-    'watch'
+    'watch',
   ]);
 
   grunt.registerTask('build', [
-    /*'jshint',
+    /* 'jshint',
     */
     'clean',
     'browserify',
@@ -232,7 +239,7 @@ module.exports = function (grunt) {
     'cacheBust',
     'connect',
     'open',
-    'watch'
+    'watch',
   ]);
 
   grunt.registerTask('optimise', ['pngmin', 'copy:images']);
