@@ -1,6 +1,14 @@
 # Dungeon Trader, Ludum Dare 42 entry
 
+Co-Author: https://github.com/akurn
+
+Special Thanks: https://github.com/DeveloperAlan
+
 Forked from https://github.com/PixelTom/phaser-es6-boilerplate
+
+## Playing
+
+You can play it here! https://pixeltom.itch.io/dungeon-trader
 
 ## Installing
 
