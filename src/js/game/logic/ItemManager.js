@@ -87,6 +87,13 @@ class ItemManager {
     this.dropGroup.add(item);
   }
 
+  dropTossZero(item) {
+    item.toss(0);
+    this.dropGroup.add(item);
+
+    this.game.state.getCurrentState().sfx.invThrow.play();
+  }
+
   itemTapped(item) {
     console.log('item', item);
     // Get next available slot if possible
@@ -103,6 +110,8 @@ class ItemManager {
     } else {
       this.placeLoot(item, slot);
     }
+
+    // this.game.state.getCurrentState().sfx.itemPickup.play();
   }
 
   itemDragging(item) {
@@ -167,6 +176,8 @@ class ItemManager {
           }
           this.placeLoot(item, slot);
           found = true;
+
+          this.game.state.getCurrentState().sfx.invDrop.play();
         }
       }
     }
@@ -185,9 +196,9 @@ class ItemManager {
         console.log('found', found);
         if (found) {
           item.destroy();
+          this.game.state.getCurrentState().sfx.itemPlayer.play();
         } else {
-          item.toss(0);
-          this.dropGroup.add(item); // temp - should always be before toss is called
+          this.dropTossZero( item )
         }
       }
     }
@@ -199,8 +210,7 @@ class ItemManager {
           this.inventory[item.slotID].occupied = false;
           item.slotID = -1;
         }
-        item.toss(0);
-        this.dropGroup.add(item); // temp - should always be before toss is called
+        this.dropTossZero( item )
       } else {
         this.placeLoot(item, this.inventory[item.slotID], true);
       }
