@@ -25,6 +25,7 @@ class Title extends Phaser.State {
     music = this.game.add.audio('bg_music');
     music.loop = true;
     music.play();
+    music.volume = 0.7;
 
     let credits = null;
 

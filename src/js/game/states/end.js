@@ -74,6 +74,7 @@ class End extends Phaser.State {
     this.game.time.events.add(2000, allowLeave, this);
 
     const lose = this.game.add.audio('sfx-lose');
+    lose.volume = 0.5;
     lose.play();
   }
 

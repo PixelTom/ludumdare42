@@ -25,8 +25,10 @@ class Game extends Phaser.State {
     // music
     this.bgMusic = this.game.add.audio('bg_music');
     this.bgMusic.loop = true;
+    this.bgMusic.volume = 0.7;
     this.comMusic = this.game.add.audio('combat_music');
     this.comMusic.loop = true;
+    this.comMusic.volume = 0.7;
     this.sfx = {
       musicBg: this.bgMusic,
       musicCom: this.comMusic,
@@ -51,6 +53,11 @@ class Game extends Phaser.State {
       poison: this.game.add.audio('sfx-poison'),
       burn: this.game.add.audio('sfx-burn'),
     };
+    for (let i = 0; i < this.sfx.win.length; i++) {
+      this.sfx.win[i].volume = 0.5;
+    }
+    this.sfx.combat.volume = 0.5;
+    this.sfx.lose.volume = 0.5;
 
     // other instances
     this.partyManager = new PartyManager(this.game);
