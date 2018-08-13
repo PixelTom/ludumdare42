@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const BaseChar = require('./BaseChar');
 const properties = require('../properties');
 
@@ -15,7 +16,7 @@ class CharMerchant extends BaseChar {
   }
 
   giveItem(item) {
-    console.log('item', item);
+    _.sample(this.game.state.getCurrentState().sfx.laugh).play();
     this.throb();
     this.startTimer();
     this.data.ITEMS += item.itemKey.VALUE;
