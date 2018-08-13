@@ -85,6 +85,7 @@ class BaseChar extends Phaser.Sprite {
         this.tint = 0xffffff;
       } else {
         this.data.STATUS = attack.STATUS;
+        this.data.STATUS_SFX = attack.STATUS_SFX;
         this.data.STATUS_COUNT = -1;
         if (attack.COLOUR) {
           this.tint = attack.COLOUR;
@@ -114,6 +115,7 @@ class BaseChar extends Phaser.Sprite {
       this.data.STATUS_COUNT += 1;
       if (this.data.STATUS_COUNT > 0) {
         this.damage(1);
+        this.data.STATUS_SFX.play();
         this.hud.statusText(this.data.STATUS, {
           x: this.x - 100,
           y: this.y - 100,

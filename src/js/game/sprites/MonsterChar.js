@@ -29,16 +29,19 @@ class MonsterChar extends BaseChar {
         STATUS: 'CORRUPTION',
         STATUS_DAMAGE: 1,
         COLOUR: 0x9e36ff,
+        SFX: this.game.state.getCurrentState().sfx.corruption,
       },
       {
         STATUS: 'POISON',
         STATUS_DAMAGE: 1,
         COLOUR: 0x36ff90,
+        SFX: this.game.state.getCurrentState().sfx.poison,
       },
       {
         STATUS: 'BURNED',
         STATUS_DAMAGE: 1,
         COLOUR: 0xffa836,
+        SFX: this.game.state.getCurrentState().sfx.burn,
       },
     ];
 
@@ -46,6 +49,7 @@ class MonsterChar extends BaseChar {
     this.data.STATUS = status.STATUS;
     this.data.STATUS_DAMAGE = status.STATUS_DAMAGE;
     this.data.COLOUR = status.COLOUR;
+    this.data.STATUS_SFX = status.SFX;
     this.data.STATUS_CHANCE = _.sample([0.1, 0.2, 0.3, 0.4]);
     if (status.COLOUR) {
       this.tint = status.COLOUR;
