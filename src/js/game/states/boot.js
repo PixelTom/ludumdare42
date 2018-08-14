@@ -15,6 +15,7 @@ class Boot extends Phaser.State {
     }
 
     this.game.sound.mute = properties.mute;
+    this.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 
     this.game.state.start('Preloader');
   }

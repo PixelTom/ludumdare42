@@ -12,7 +12,7 @@ module.exports = {
     y: 512,
   },
   background: '#000',
-  autoScale: false,
+  autoScale: true,
   // analyticsId: 'UA-50892214-2'
 
   // Positional properties
